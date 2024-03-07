@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\User;
-use App\Models\Manager;
 use Illuminate\Http\Request;
+use App\Models\OtherFootballJobs;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Jobs\SendStaffStatusUpdatedEmail;
-use PDF;
-class ManagerController extends Controller
+
+class OtherFootballJobsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,11 +23,11 @@ class ManagerController extends Controller
     {   $user = Auth::user();
         $collectionOfRoles = Role::get();
         if($user->hasAllRoles($collectionOfRoles) || auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner')  ){
-            $managers = Manager::with('user')->orderBy('id', 'desc')->get();
-            return view('partials.manager.index', compact('managers','collectionOfRoles'));
+            $otherFootballJobs = OtherFootballJobs::with('user')->orderBy('id', 'desc')->get();
+            return view('partials.other_football_jobs.index', compact('otherFootballJobs','collectionOfRoles'));
         }else{
-            $manager = User::where('id',Auth::user()->id)->with('manager')->first();
-            return view('partials.manager.index', compact('manager','collectionOfRoles'));
+            $other_football_job = User::where('id',Auth::user()->id)->with('other_football_job')->first();
+            return view('partials.other_football_jobs.index', compact('other_football_job','collectionOfRoles'));
         }
        
     }
@@ -38,7 +39,7 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        return view('partials.manager.create');
+        return view('partials.other_football_jobs.create');
     }
 
     /**
@@ -54,17 +55,12 @@ class ManagerController extends Controller
             'email' => 'required|email|max:255',
             'phone' => 'required|numeric',
             'address' => 'required|string|max:255',
-            'age' => 'required|numeric',
-            'dob' => 'required',
-            'nationality' => 'required|string|max:255',
-            'football_club_manage' => 'required',
-            'coaching_badges' => 'required',
-            'qualification' => 'required',
-            'honours' => 'required',
-            'international_team_managed' => 'required',
-            'video' => 'required',
+            'about_you' => 'required',
+            'dob' => 'required|date',
+            'position' => 'required|string|max:255',
+            'experience' => 'required',
+            'password' => 'required',
         ]);
-
         try {
             //handle photo
         if ($request->hasFile('photo')) {
@@ -84,26 +80,21 @@ class ManagerController extends Controller
         ]);
 
         //assign role
-        $user->assignRole('manager');
-        //store data to players table
-        $manager = new \App\Models\Manager();
-        $manager->user_id = $user->id;
-        $manager->name = $request->name;
-        $manager->phone = $request->phone;
-        $manager->address = $request->address;
-        $manager->age = $request->age;
-        $manager->dob = $request->dob;
-        $manager->nationality = $request->nationality;
-        $manager->football_club_manage = $request->football_club_manage;
-        $manager->coaching_badges = $request->coaching_badges;
-        $manager->qualification = $request->qualification;
-        $manager->honours = $request->honours;
-        $manager->international_team_managed = $request->international_team_managed;
-        $manager->video = $request->video;
-        $manager->save();
+        $user->assignRole('other_football_job');
+        $football_job = new \App\Models\OtherFootballJobs();
+        $football_job->user_id = $user->id;
+        $football_job->name = $request->name;
+        $football_job->phone = $request->phone;
+        $football_job->address = $request->address;
+        $football_job->dob = $request->dob;
+        $football_job->position = $request->position;
+        $football_job->about_you = $request->about_you;
+        $football_job->experience = $request->experience;
+        $football_job->save();
+     
         
         DB::commit();
-        return redirect()->route('manager.index')->with('message', 'Manager info saved successfully');
+        return redirect()->route('other-football-job.index')->with('message', 'Footbal job info saved successfully');
 
         } catch (\Exception $e) {
             //throw $th;
@@ -121,9 +112,9 @@ class ManagerController extends Controller
      */
     public function show($id)
     {
-        $manager = Manager::with('user')->findOrFail($id);
+        $football_job = OtherFootballJobs::with('user')->findOrFail($id);
         // return $player;
-        return view('partials.manager.show', compact('manager'));
+        return view('partials.other_football_jobs.show', compact('football_job'));
     }
 
     /**
@@ -134,8 +125,8 @@ class ManagerController extends Controller
      */
     public function edit($id)
     {
-        $manager = Manager::with('user')->findOrFail($id);
-        return view('partials.manager.edit', compact('manager'));
+        $football_job = OtherFootballJobs::with('user')->findOrFail($id);
+        return view('partials.other_football_jobs.edit', compact('football_job'));
     }
 
     /**
@@ -147,23 +138,19 @@ class ManagerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required|numeric',
             'address' => 'required|string|max:255',
-            'age' => 'required|numeric',
-            'dob' => 'required',
-            'nationality' => 'required|string|max:255',
-            'football_club_manage' => 'required',
-            'coaching_badges' => 'required',
-            'qualification' => 'required',
-            'honours' => 'required',
-            'international_team_managed' => 'required',
-            'video' => 'required',
+            'about_you' => 'required',
+            'dob' => 'required|date',
+            'position' => 'required|string|max:255',
+            'experience' => 'required',
         ]);
 
         // Find the user
-        $user = Manager::with('user')->findOrFail($id);
+        $user = OtherFootballJobs::with('user')->findOrFail($id);
         // Check if photo exists and delete it
         // Update photo if a new one is uploaded
         if ($request->hasFile('photo')) {
@@ -194,32 +181,27 @@ class ManagerController extends Controller
         $user->user->save();
 
         // Update manager data
-        $manager = $user;
-        $manager->name = $request->name;
-        $manager->phone = $request->phone;
-        $manager->address = $request->address;
-        $manager->age = $request->age;
-        $manager->dob = $request->dob;
-        $manager->nationality = $request->nationality;
-        $manager->football_club_manage = $request->football_club_manage;
-        $manager->coaching_badges = $request->coaching_badges;
-        $manager->qualification = $request->qualification;
-        $manager->honours = $request->honours;
-        $manager->international_team_managed = $request->international_team_managed;
-        $manager->video = $request->video;
-        $manager->save();
-        return redirect()->route('manager.index')->with('message', 'manager updated successfully');
+        $football_job = $user;
+        $football_job->name = $request->name;
+        $football_job->phone = $request->phone;
+        $football_job->address = $request->address;
+        $football_job->dob = $request->dob;
+        $football_job->position = $request->position;
+        $football_job->about_you = $request->about_you;
+        $football_job->experience = $request->experience;
+        $football_job->save();
+        return redirect()->route('other-football-job.index')->with('message', 'Football job updated successfully');
 
     }
-    public function adminApproveStatusOfManager($id, $newStatus)
+    public function adminApproveStatusOfOtherFootballJob($id, $newStatus)
     {
-        $status = Manager::with('user')->findOrFail($id);
+        $status = OtherFootballJobs::with('user')->findOrFail($id);
         //update status
         $status->status = $newStatus;
         $status->save();
         // Dispatch the job to send the email
         SendStaffStatusUpdatedEmail::dispatch($status);
-        return redirect()->route('manager.index')->with('message', 'Status updated successfully');
+        return redirect()->route('other-football-job.index')->with('message', 'Status updated successfully');
     }
 
     /**
@@ -231,20 +213,20 @@ class ManagerController extends Controller
     public function destroy($id)
     {
         // Find the player
-        $manager = Manager::with('user')->findOrFail($id);
+        $football_job = OtherFootballJobs::with('user')->findOrFail($id);
         // Delete old photo if it exists
-        if ($manager->user->photo) {
-            $oldPhotoPath = public_path('images/' . $manager->user->photo);
+        if ($football_job->user->photo) {
+            $oldPhotoPath = public_path('images/' . $football_job->user->photo);
             if (file_exists($oldPhotoPath)) {
                 unlink($oldPhotoPath);
             }
         }
         // Delete the player
-        $manager->user->delete();
-        $manager->delete();
+        $football_job->user->delete();
+        $football_job->delete();
 
         // Redirect back with a success message
-        return redirect()->route('manager.index')->with('success', 'Manager deleted successfully');
+        return redirect()->route('other-football-job.index')->with('success', 'Football job deleted successfully');
     }
 
     //write code for pdf export
@@ -253,17 +235,17 @@ class ManagerController extends Controller
         $user = Auth::user();
         $collectionOfRoles = Role::get();
         if($user->hasAllRoles($collectionOfRoles) || auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner')){
-            $manager = Manager::with('user')->findOrFail($id);
-            $pdf = PDF::loadView('partials.manager.pdf.admin_view_profile', compact('manager','collectionOfRoles'))->setPaper('a4')->setWarnings(false);
-            return $pdf->download('manager_profile.pdf');
+            $football_job = OtherFootballJobs::with('user')->findOrFail($id);
+            $pdf = PDF::loadView('partials.other_football_jobs.pdf.admin_view_profile', compact('football_job','collectionOfRoles'))->setPaper('a4')->setWarnings(false);
+            return $pdf->download('football_job_profile.pdf');
             
         }else{
             //Auth user only
             // return 'ok';
-            $manager = User::with('manager')->findOrFail(Auth::user()->id);
+            $other_football_job = User::with('other_football_job')->findOrFail(Auth::user()->id);
             // return $player;
-            $pdf = PDF::loadView('partials.manager.pdf.profile', compact('manager'))->setPaper('a4')->setWarnings(false);
-            return $pdf->download('manager_profile.pdf');
+            $pdf = PDF::loadView('partials.other_football_jobs.pdf.profile', compact('other_football_job'))->setPaper('a4')->setWarnings(false);
+            return $pdf->download('football_job_profile.pdf');
 
         }
     }

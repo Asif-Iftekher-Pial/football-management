@@ -58,11 +58,22 @@
                 @else
                     
                 @endif
-                
+                @if ( auth()->user()->hasRole('manager') || auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner'))
                 <li>
-                    <a href="calendar.html">
-                        <i class="fas fa-calendar-alt"></i>Calendar</a>
+                    <a href="{{ route('manager.index') }}"><i class="fas fa-user"></i>Manager</a>
                 </li>
+                @else
+                    
+                @endif
+
+                @if ( auth()->user()->hasRole('other_football_job') || auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner'))
+                <li>
+                    <a href="{{ route('other-football-job.index') }}"><i class="fas fa-user"></i>Other Football Job</a>
+                </li>
+                @else
+                    
+                @endif
+               
                
                
                

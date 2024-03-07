@@ -70,38 +70,27 @@
         <div>
             <img src="{{ public_path('logo/pdf_header.png') }}" alt="" srcset="">
         </div>
-        <div style="text-align: center"><h3>Manager Profile</h3></div>
+        <br>
+        <div style="text-align: center"><h3>Football Job's Profile</h3></div>
         <div class="profile-header">
             <img src="{{ 
-                public_path('images/'.$manager->photo) }}" alt="Profile Picture">
-            <h2>{{$manager->name ?? ''}}</h2>
+                public_path('images/'.$other_football_job->photo) }}" alt="Profile Picture">
+            <h2>{{$other_football_job->name ?? ''}}</h2>
            
             
         </div>
         <div>
             <h4>Personal Information</h4>
-            <p><strong>Age:</strong> {{ $manager->manager->age ?? '' }}</p>
-            <p><strong>Date of Birth:</strong> {{ $manager->manager->dob ?? '' }}</p>
-            <p><strong>Nationality:</strong> {{ $manager->manager->nationality ?? '' }}</p>
+            <p><strong>Date of Birth:</strong> {{ $other_football_job->other_football_job->dob ?? '' }}</p>
+        
+            <p><strong>Position:</strong> {{ $other_football_job->other_football_job->position ?? '' }}</p>
+            <p><strong>Experience:</strong> {{ $other_football_job->other_football_job->experience ?? '' }}</p>
+            <p><strong>About:</strong> {{ $other_football_job->other_football_job->about_you ?? '' }}</p>
         </div>
-        <div>
-            <h4>Career Information</h4>
-            <p><strong>Football Club Manage:</strong> {{ $manager->manager->football_club_manage ?? '' }}</p>
-            <p><strong>Coaching badges:</strong> {{ $manager->manager->coaching_badges ?? '' }}</p>
-            <p><strong>Qualification:</strong> {{ $manager->manager->qualification ?? '' }}</p>
-            <p><strong>Honours:</strong> {{ $manager->manager->honours ?? '' }}</p>
-            <p><strong>International team managed:</strong> {{ $manager->manager->international_team_managed ?? '' }}</p>
-        </div>
-        {{-- <div class="profile-info">
-            <h4>Medical Information</h4>
-            <p><strong>Blood Type:</strong> {{ $manager->manager->medical_info->blood_type ?? '' }}</p>
-            <p><strong>Allergies:</strong> {{ $manager->manager->medical_info->allergies ?? '' }}</p>
-            <p><strong>Previous Injuries:</strong> {{ $manager->manager->medical_info->previous_injuries ?? '' }}</p>
-            <p><strong>About manager:</strong> {{ $manager->manager->medical_info->about_manager ?? '' }}</p>
-        </div> --}}
         <div>
             <img src="{{ public_path('logo/footer.png') }}" alt="" srcset="">
         </div>
+        
     </div>
 
 

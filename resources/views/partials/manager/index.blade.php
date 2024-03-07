@@ -7,17 +7,19 @@
                     @include('layouts.errorAndSuccessMessage')
                     <div class="overview-wrap">
                         @hasallroles($collectionOfRoles)
-                        <h2 class="title-1">Players</h2>
+                        <h2 class="title-1">Managers</h2>
                         
-                            <a href="{{ route('player.create') }}" class="au-btn au-btn-icon au-btn--blue">
-                                <i class="zmdi zmdi-plus"></i>Add Player</a>
+                            <a href="{{ route('manager.create') }}" class="au-btn au-btn-icon au-btn--blue">
+                                <i class="zmdi zmdi-plus"></i>Add Manager</a>
                         @else
                         @endhasallroles
-                        @hasexactroles('player')
-                        <h2 class="title-1">Player Information</h2>
+
+                        @hasexactroles('manager')
+                        <h2 class="title-1">Manager Information</h2>
                         @endhasexactroles
-                        @if (auth()->user()->hasRole('football_group_staff'))
-                        <h2 class="title-1">Players</h2>
+
+                        @if ((auth()->user()->hasRole('football_group_staff') ||auth()->user()->hasRole('partner') ) && (!auth()->user()->hasallroles($collectionOfRoles)))
+                        <h2 class="title-1">Manager</h2>
                         @endif
                         
                     </div>
@@ -40,33 +42,33 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($players as $player)
+                                        @foreach ($managers as $manager)
                                             <tr>
-                                                <td>{{ $player->name }}</td>
+                                                <td>{{ $manager->name }}</td>
                                                 <td>
-                                                    @if ($player->user->photo)
-                                                        <img src="{{ asset('images/' . $player->user->photo) }}"
+                                                    @if ($manager->user->photo)
+                                                        <img src="{{ asset('images/' . $manager->user->photo) }}"
                                                             alt="Photo" width="100px">
                                                     @else
                                                         No Photo
                                                     @endif
                                                 </td>
-                                                <td>{{ $player->age }}</td>
-                                                <td>{{ $player->nationality }}</td>
+                                                <td>{{ $manager->age }}</td>
+                                                <td>{{ $manager->nationality }}</td>
                                                 @hasallroles($collectionOfRoles)
                                                 <td>
                                                     <div class="dropdown">
                                                         <button
-                                                            class="btn btn-sm {{ $player->status == 'approved' ? 'btn-success' : 'btn-danger' }} dropdown-toggle"
+                                                            class="btn btn-sm {{ $manager->status == 'approved' ? 'btn-success' : 'btn-danger' }} dropdown-toggle"
                                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                                             aria-haspopup="true" aria-expanded="false">
-                                                            {{ ucwords(str_replace('_', ' ', $player->status)) }}
+                                                            {{ ucwords(str_replace('_', ' ', $manager->status)) }}
                                                         </button>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                             <a class="dropdown-item"
-                                                                href="{{ route('admin.approve.player', ['id' => $player->id, 'status' => 'approved']) }}">Approved</a>
+                                                                href="{{ route('manager.approve.status', ['id' => $manager->id, 'status' => 'approved']) }}">Approved</a>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('admin.approve.player', ['id' => $player->id, 'status' => 'not_approved']) }}">Reject</a>
+                                                                href="{{ route('manager.approve.status', ['id' => $manager->id, 'status' => 'not_approved']) }}">Reject</a>
 
                                                         </div>
                                                     </div>
@@ -76,19 +78,19 @@
                                                 {{-- <td class="process">{{ $staff->payment_status }}</td> --}}
                                                 <td class="row justify-content-between">
                                                     {{-- edit button --}}
-                                                    <a href="{{ route('player.show', $player->id) }}"
+                                                    <a href="{{ route('manager.show', $manager->id) }}"
                                                         class="btn btn-success btn-sm"><i class="fa fa-eye"
                                                             aria-hidden="true"></i></a>
                                                     @hasallroles($collectionOfRoles)
-                                                    <a href="{{ route('player.edit', $player->id) }}"
+                                                    <a href="{{ route('manager.edit', $manager->id) }}"
                                                         class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"
                                                             aria-hidden="true"></i></a>
-                                                    <form action="{{ route('player.destroy', $player->id) }}"
+                                                    <form action="{{ route('manager.destroy', $manager->id) }}"
                                                         method="POST" style="display: inline;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit"
-                                                            onclick="return confirm('Are you sure you want to delete this player?');"
+                                                            onclick="return confirm('Are you sure you want to delete this manager?');"
                                                             class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </button>
@@ -110,13 +112,13 @@
 
 
 
-                    @hasexactroles('player')
+                    @hasexactroles('manager')
                     <div class="row m-t-30">
                         <div class="col-md-12">
                             <div class="card text-center">
                                 <div class="card-header">
-                                    @if ($player->player->status == 'approved')
-                                    <a href="{{ route('player.edit', $player->player->id) }}"
+                                    @if ($manager->manager->status == 'approved')
+                                    <a href="{{ route('manager.edit', $manager->manager->id) }}"
                                         class="btn btn-warning pull-left m-1"><i class="fa fa-pencil-square-o"
                                             aria-hidden="true"></i>
                                     </a>
@@ -126,45 +128,33 @@
                                    
 
                                     <i class="fa fa-user"></i>
-                                    <strong class="card-title mb-3">Player Profile</strong>
+                                    <strong class="card-title mb-3">Manager Profile</strong>
                                    
-                                    <a href="{{ route('player.export.pdf',$player->player->id) }}" class="btn btn-success pull-right"><i class="fa fa-print" aria-hidden="true"></i></a>
+                                    <a href="{{ route('manager.export.pdf',$manager->manager->id) }}" class="btn btn-success pull-right"><i class="fa fa-print" aria-hidden="true"></i></a>
                                 </div>
                                 <div class="card-body">
                                     <div class="mx-auto d-block">
-                                        @if ($player->photo)
-                                        <img class="rounded-circle mx-auto d-block" src="{{ asset('images/' . $player->photo) }}" alt="Photo" width="100px">
+                                        @if ($manager->photo)
+                                        <img class="rounded-circle mx-auto d-block" src="{{ asset('images/' . $manager->photo) }}" alt="Photo" width="100px">
                                         @else
                                         No Photo
                                         @endif
-                                        <h5 class="text-sm-center mt-2 mb-1">Name: {{ $player->name }}</h5>
-                                        <h5 class="text-sm-center mt-2 mb-1">Email: {{ $player->email }}</h5>
-                                        <h5 class="text-sm-center mt-2 mb-1">Phone: {{ $player->player->phone }}</h5>
-                                        <h5 class="text-sm-center mt-2 mb-1">Address: {{ $player->player->address }}</h5>
-                                        <h5 class="text-sm-center mt-2 mb-1">Nationality: {{ $player->player->nationality }}</h5>
-                                        <h5 class="text-sm-center mt-2 mb-1">Gender: {{ $player->player->gender }}</h5>
-                                        <h5 class="text-sm-center mt-2 mb-1">Contract Length: {{ $player->player->contract_length }}</h5>
-                                        <h5 class="text-sm-center mt-2 mb-1">Football Group Player: {{ $player->player->football_group_player }}</h5>
-                                        <div class="location text-sm-center">Current Club: {{ ucwords(str_replace('_', ' ', $player->player->current_club)) }}</div>
-                                        <div class="location text-sm-center">Position: {{ ucwords(str_replace('_', ' ', $player->player->position)) }}</div>
-                                        <div class="location text-sm-center">Favourite Foot: {{ ucwords(str_replace('_', ' ', $player->player->favourite_foot)) }}</div>
-                                        <div class="location text-sm-center">International Appearance: {{ ucwords(str_replace('_', ' ', $player->player->international_appearance)) }}</div>
-                                        <div class="location text-sm-center">Passport Type: {{ ucwords(str_replace('_', ' ', $player->player->passport_type)) }}</div>
-                                        <div class="location text-sm-center">Multiple Passports: {{ ucwords(str_replace('_', ' ', $player->player->is_passport_more_then_one)) }}</div>
-                                        <div class="location text-sm-center">Age: {{ $player->player->age }}</div>
-                                        <div class="location text-sm-center">Date of Birth: {{ $player->player->dob }}</div>
-                                        <div class="location text-sm-center">Height: {{ $player->player->height }}</div>
-                                        <div class="location text-sm-center">Weight: {{ $player->player->weight }}</div>
-                                        <div class="location text-sm-center">Other Info: {{ $player->player->other_info }}</div>
+                                        <h5 class="text-sm-center mt-2 mb-1">Name: {{ $manager->name }}</h5>
+                                        <h5 class="text-sm-center mt-2 mb-1">Email: {{ $manager->email }}</h5>
+                                        <h5 class="text-sm-center mt-2 mb-1">Phone: {{ $manager->manager->phone }}</h5>
+                                        <h5 class="text-sm-center mt-2 mb-1">Address: {{ $manager->manager->address }}</h5>
+                                        <h5 class="text-sm-center mt-2 mb-1">Nationality: {{ $manager->manager->nationality }}</h5>
+                                        <div class="location text-sm-center">Age: {{ $manager->manager->age }}</div>
+                                        <div class="location text-sm-center">Date of Birth: {{ $manager->manager->dob }}</div>
+
+                                        <p>Football Club Manage: {{ $manager->manager->football_club_manage ?? '' }}</p>
+                                        <p>Coaching badges: {{ $manager->manager->coaching_badges ?? '' }}</p>
+                                        <p>Qualification: {{ $manager->manager->qualification ?? '' }}</p>
+                                        <p>Honours:{{ $manager->manager->honours ?? '' }}</p>
+                                        <p>International team managed: {{ $manager->manager->international_team_managed ?? '' }}</p>
                                     </div>
                                     <hr>
-                                    <div class="card-text text-sm-center">
-                                       <h2>Medical Information</h2>
-                                       <div class="location text-sm-center">Blood Type: {{ $player->player->medical_info->blood_type }}</div>
-                                       <div class="location text-sm-center">Allergies: {{ $player->player->medical_info->allergies }}</div>
-                                       <div class="location text-sm-center">Previous Injuries: {{ $player->player->medical_info->previous_injuries }}</div>
-                                       <div class="location text-sm-center">About Player: {{ $player->player->medical_info->about_player }}</div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

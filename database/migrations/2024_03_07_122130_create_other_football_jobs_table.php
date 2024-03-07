@@ -13,24 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('managers', function (Blueprint $table) {
+        Schema::create('other_football_jobs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('name');
-            $table->string('phone');
-            $table->string('video');
-            $table->string('address');
-            $table->string('age');
             $table->string('dob');
-            $table->string('nationality');
-            $table->string('football_club_manage');
-            $table->string('coaching_badges');
-            $table->longText('qualification');
-            $table->longText('honours');
-            $table->longText('international_team_managed');
+            $table->string('position');
+            $table->longText('about_you');
+            $table->longText('experience');
+            $table->string('phone');
+            $table->string('address');
             $table->enum('status', ['approved', 'not_approved'])->default('not_approved');
-            $table->enum('payment_status', ['paid', 'not_paid'])->default('not_paid');
-           
             $table->timestamps();
         });
     }
@@ -42,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('managers');
+        Schema::dropIfExists('other_football_jobs');
     }
 };

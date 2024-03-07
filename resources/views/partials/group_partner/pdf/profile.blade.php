@@ -64,7 +64,10 @@
 </head>
 <body>
     <div class="container profile-info">
-        <div style="text-align: center"><h1>Football Group Partner</h1></div>
+        <div>
+            <img src="{{ public_path('logo/pdf_header.png') }}" alt="" srcset="">
+        </div>
+        <div style="text-align: center"><h3>Football Group Partner</h3></div>
         <div class="profile-header">
             <img src="{{ public_path('images/'.$football_group->user->photo) }}" alt="Profile Picture">
             <h2>{{$football_group->name ?? ''}}</h2>
@@ -80,7 +83,9 @@
             <p><strong>Status:</strong> {{ $football_group->status ?? '' }}</p>
             <p><strong>Payment Status:</strong> {{ $football_group->payment_status ?? '' }}</p>
         </div>
-       
+        <div>
+            <img src="{{ public_path('logo/footer.png') }}" alt="" srcset="">
+        </div>
     </div>
 </body>
 </html>

@@ -53,10 +53,17 @@ class User extends Authenticatable
     {
         return $this->hasOne(Player::class,'user_id','id');
     }
-  
+    public function manager()
+    {
+        return $this->hasOne(Manager::class,'user_id','id');
+    }
 
     public function players()
     {
         return $this->hasMany(Player::class,'id','player_id');
+    }
+    public function other_football_job()
+    {
+        return $this->hasOne(OtherFootballJobs::class,'user_id','id');
     }
 }

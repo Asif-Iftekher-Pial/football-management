@@ -11,9 +11,7 @@ class Manager extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'email',
         'phone',
-        'photo',
         'video',
         'address',
         'age',
@@ -28,5 +26,8 @@ class Manager extends Model
         'payment_status',
     ];
 
-           
+      public function user()
+      {
+          return $this->belongsTo(User::class,'user_id','id');
+      }     
 }

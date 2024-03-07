@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FootballGroupPartnerController;
 use App\Http\Controllers\FootballGroupStaffController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\OtherFootballJobsController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\RolePermissionController;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,13 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
         Route::resource('manager', ManagerController::class);
         Route::get('manager-approve/{id}/{status}', [ManagerController::class, 'adminApproveStatusOfManager'])->name('manager.approve.status');
         Route::get('manager-pdf/{id}', [ManagerController::class, 'exportToPdf'])->name('manager.export.pdf');
+
+        //Other Football Job
+        Route::resource('other-football-job', OtherFootballJobsController::class);
+        Route::get('other-football-job-approve/{id}/{status}', [OtherFootballJobsController::class, 'adminApproveStatusOfOtherFootballJob'])->name('football_job.approve.status');
+        Route::get('other-football-job-pdf/{id}', [OtherFootballJobsController::class, 'exportToPdf'])->name('football_job.export.pdf');
+
+
     });
 
    

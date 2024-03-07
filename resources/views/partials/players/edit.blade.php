@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <label for="dob" class="form-control-label">Date of Birth</label>
-                            <input type="number" name="dob" value="{{ $player->dob }}" placeholder="Enter date of birth" class="form-control">
+                            <input type="date" name="dob" value="{{ $player->dob }}" placeholder="Enter date of birth" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="height" class="form-control-label">Height</label>

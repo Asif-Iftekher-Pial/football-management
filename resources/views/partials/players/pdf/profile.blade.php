@@ -67,7 +67,10 @@
 
     {{-- Auth user --}}
     <div class="container">
-        <div style="text-align: center"><h1>Player Profile</h1></div>
+        <div>
+            <img src="{{ public_path('logo/pdf_header.png') }}" alt="" srcset="">
+        </div>
+        <div style="text-align: center"><h3>Player Profile</h3></div>
         <div class="profile-header">
             <img src="{{ 
                 public_path('images/'.$player->photo) }}" alt="Profile Picture">
@@ -107,6 +110,9 @@
             <p><strong>Previous Injuries:</strong> {{ $player->player->medical_info->previous_injuries ?? '' }}</p>
             <p><strong>About Player:</strong> {{ $player->player->medical_info->about_player ?? '' }}</p>
         </div> --}}
+        <div>
+            <img src="{{ public_path('logo/footer.png') }}" alt="" srcset="">
+        </div>
     </div>
 
 

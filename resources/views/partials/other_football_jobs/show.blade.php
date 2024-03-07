@@ -4,33 +4,26 @@
     <div class="card text-center">
         <div class="card-header">
             <i class="fa fa-user"></i>
-            <strong class="card-title mb-3">Manager Profile</strong>
-            <a href="{{ route('manager.export.pdf',$manager->id) }}" class="btn btn btn-success pull-right"><i class="fa fa-print" aria-hidden="true"></i></a>
+            <strong class="card-title mb-3">Football Job's Profile</strong>
+            <a href="{{ route('football_job.export.pdf',$football_job->id) }}" class="btn btn btn-success pull-right"><i class="fa fa-print" aria-hidden="true"></i></a>
         </div>
         <div class="card-body">
             <div class="mx-auto d-block">
-                @if ($manager->user->photo)
-                <img class="rounded-circle mx-auto d-block" src="{{ asset('images/' . $manager->user->photo) }}" alt="Photo" width="100px">
+                @if ($football_job->user->photo)
+                <img class="rounded-circle mx-auto d-block" src="{{ asset('images/' . $football_job->user->photo) }}" alt="Photo" width="100px">
                 @else
                 No Photo
                 @endif
-                <h5 class="text-sm-center mt-2 mb-1">Name: {{ $manager->name }}</h5>
-                <h5 class="text-sm-center mt-2 mb-1">Email: {{ $manager->user->email }}</h5>
-                <h5 class="text-sm-center mt-2 mb-1">Age: {{ $manager->age }}</h5>
-                <h5 class="text-sm-center mt-2 mb-1">Phone: {{ $manager->phone }}</h5>
-                <h5 class="text-sm-center mt-2 mb-1">Address: {{ $manager->address }}</h5>
-                <h5 class="text-sm-center mt-2 mb-1">Nationality: {{ $manager->nationality }}</h5>
-                <div class="text-sm-center mt-2 mb-1">Date of Birth: {{ $manager->dob }}</div>
-                <div class="text-sm-center mt-2 mb-1">Nationality: {{ $manager->nationality }}</div>
-                <div class="text-sm-center mt-2 mb-1">Football Club Managed: {{ $manager->football_club_manage }}</div>
-                <div class="text-sm-center mt-2 mb-1">Coaching Badges: {{ $manager->coaching_badges }}</div>
-                <div class="text-sm-center mt-2 mb-1">Qualification: {{ $manager->qualification }}</div>
-                <div class="text-sm-center mt-2 mb-1">Honours: {{ $manager->honours }}</div>
-                <div class="text-sm-center mt-2 mb-1">International Team Managed: {{ $manager->international_team_managed }}</div>
-                <h5 class="text-sm-center mt-2 mb-1">Video: {{ $manager->video }}</h5>
+                <h5 class="text-sm-center mt-2 mb-1">Name: {{ $football_job->name }}</h5>
+                <h5 class="text-sm-center mt-2 mb-1">Email: {{ $football_job->user->email }}</h5>
+                <h5 class="text-sm-center mt-2 mb-1">Phone: {{ $football_job->phone }}</h5>
+                <h5 class="text-sm-center mt-2 mb-1">Address: {{ $football_job->address }}</h5>
+                <div class="text-sm-center mt-2 mb-1">Date of Birth: {{ $football_job->dob }}</div>
+                <div class="text-sm-center mt-2 mb-1">Position: {{ $football_job->position }}</div>
+                <div class="text-sm-center mt-2 mb-1">Experience: {{ $football_job->experience }}</div>
+                <div class="text-sm-center mt-2 mb-1">About: {{ $football_job->about_you }}</div>
                 
             </div>
-            <hr>
            
         </div>
     </div>

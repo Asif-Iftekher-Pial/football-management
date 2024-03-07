@@ -68,59 +68,36 @@
         <div>
             <img src="{{ public_path('logo/pdf_header.png') }}" alt="" srcset="">
         </div>
-        <div style="text-align: center"><h3>Player Profile</h3></div>
+        <div style="text-align: center"><h3>Football Job's Profile</h3></div>
         <div class="profile-header">
             <img src="{{ 
-                public_path('images/'.$player->user->photo) }}" alt="Profile Picture">
-            <h2>{{$player->name ?? ''}}</h2>
-            Position:<h5>{{$player->position ?? ''}}</p>
-            
+                public_path('images/'.$football_job->user->photo) }}" alt="Profile Picture">
+            <h2>{{$football_job->name ?? ''}}</h2>
+             
             <h2>
                 @if ( auth()->user()->hasAllRoles($collectionOfRoles))
-                <strong>Email: </strong>{{$player->user->email ?? ''}}</h2>
+                <strong>Email: </strong>{{$football_job->user->email ?? ''}}</h2>
                 @else
                 @endif
             <h2>
                 @if ( auth()->user()->hasAllRoles($collectionOfRoles))
-                <strong>Phone:</strong>{{$player->phone ?? ''}}
+                <strong>Phone:</strong>{{$football_job->phone ?? ''}}
                 @else
                 @endif
                
             </h2>
             <h2>
                 @if ( auth()->user()->hasAllRoles($collectionOfRoles))
-                <strong>Address:</strong>{{$player->address ?? ''}}</h2>
+                <strong>Address:</strong>{{$football_job->address ?? ''}}</h2>
                 @else
                 @endif
         </div>
         <div>
             <h4>Personal Information</h4>
-            <p><strong>Age:</strong> {{ $player->age ?? '' }}</p>
-            <p><strong>Date of Birth:</strong> {{ $player->dob ?? '' }}</p>
-            <p><strong>Gender:</strong> {{ $player->gender ?? '' }}</p>
-            <p><strong>Height:</strong> {{ $player->height ?? '' }}</p>
-            <p><strong>Weight:</strong> {{ $player->weight ?? '' }}</p>
-            <p><strong>Favourite Foot:</strong> {{ $player->favourite_foot ?? '' }}</p>
-            <p><strong>Nationality:</strong> {{ $player->nationality ?? '' }}</p>
-            <p><strong>Passport Type:</strong> {{ $player->passport_type ?? '' }}</p>
-            <p><strong>Has More Than One Passport:</strong> {{ $player->is_passport_more_then_one ?? '' }}</p>
-        </div>
-        <div >
-            <h4>Career Information</h4>
-            <p><strong>Current Club:</strong> {{ $player->current_club ?? '' }}</p>
-            <p><strong>International Appearances:</strong> {{ $player->international_appearance ?? '' }}</p>
-            <p><strong>Contract Length:</strong> {{ $player->contract_length ?? '' }}</p>
-            <p><strong>Football Group Player:</strong> {{ $player->football_group_player ?? '' }}</p>
-            <p><strong>Other Information:</strong> {{ $player->other_info ?? '' }}</p>
-        </div>
-        <div>
-            @if ( auth()->user()->hasAllRoles($collectionOfRoles))
-            <h4>Medical Information</h4>
-            <p><strong>Blood Type:</strong> {{ $player->medical_info->blood_type ?? '' }}</p>
-            <p><strong>Allergies:</strong> {{ $player->medical_info->allergies ?? '' }}</p>
-            <p><strong>Previous Injuries:</strong> {{ $player->medical_info->previous_injuries ?? '' }}</p>
-            <p><strong>About Player:</strong> {{ $player->medical_info->about_player ?? '' }}</p>
-            @endif
+            <p><strong>Date of Birth:</strong> {{ $football_job->dob ?? '' }}</p>
+            <p><strong>Position:</strong> {{ $football_job->position ?? '' }}</p>
+            <p><strong>Experience:</strong> {{ $football_job->experience ?? '' }}</p>
+            <p><strong>About:</strong> {{ $football_job->about_you ?? '' }}</p>
         </div>
         <div>
             <img src="{{ public_path('logo/footer.png') }}" alt="" srcset="">

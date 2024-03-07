@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $roles = ['football_group_staff','partner','player','registered_football_club','manager'];
+        $roles = ['football_group_staff','partner','player','registered_football_club','manager','other_football_job'];
         //drop Role table first
         foreach ($roles as $role) {
             Role::firstOrCreate(['name' => $role]);
