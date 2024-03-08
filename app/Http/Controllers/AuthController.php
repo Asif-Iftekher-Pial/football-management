@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FootballGroupStaff;
+use App\Models\GroupPartner;
+use App\Models\Manager;
+use App\Models\OtherFootballJobs;
+use App\Models\Player;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -10,7 +17,40 @@ class AuthController extends Controller
 {
     public function dashboard()
     {
-        return view('partials.home.home');
+        $labels = [];
+        $data = [];
+        $test = User::get()
+        ->groupBy(function($Item){
+            return  Carbon::parse($Item->created_at)->format('F'); // grouping
+        });
+
+        // Loop through the months and populate labels and data arrays
+        foreach ($test as $month => $items) {
+            $labels[] = $month;
+            $data[] = $items->count();
+        }
+        
+        $chart_data = [
+            'labels' => $labels,
+            'data' => $data
+        ];
+
+        $total_users = User::count();
+        $active_players = Player::where('status', 'approved')->count();
+        $inactive_players = Player::where('status', 'not_approved')->count();
+        $active_partners = GroupPartner::where('status', 'approved')->count();
+        $inactive_partners = GroupPartner::where('status', 'not_approved')->count();
+        $active_managers = Manager::where('status', 'approved')->count();
+        $inactive_managers = GroupPartner::where('status', 'not_approved')->count();
+        $active_football_staff = FootballGroupStaff::where('status', 'approved')->count();
+        $inactive_football_staff = FootballGroupStaff::where('status', 'not_approved')->count();
+        $jobs = OtherFootballJobs::where('status','approved')->count();
+        $inactive_jobs = OtherFootballJobs::where('status','not_approved')->count();
+        return view('partials.home.home',compact('active_players','inactive_players',
+        'active_partners','inactive_partners','active_managers','inactive_managers',
+        'active_football_staff','inactive_football_staff','chart_data','total_users',
+        'jobs','inactive_jobs'
+        ));
     }
     /**
      * Display a listing of the resource.

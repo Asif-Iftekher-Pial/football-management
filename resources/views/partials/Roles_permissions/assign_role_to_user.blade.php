@@ -11,6 +11,9 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
+                            <h5 class="text-center m-4">Please be carefull about assigning new role to user.Your system might behave unexpectedly!</h5>
+                        </div>
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <div class="form-check">
                                     <label for="checkboxSuperAdmin" class="form-check-label">
@@ -37,7 +40,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <button type="submit" class="btn btn-sm btn-success mb-5">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-success mb-5" onclick="return confirm('Are you sure you want to assign role to this user?');">Submit</button>
                 </form>
             </div>
         </div>

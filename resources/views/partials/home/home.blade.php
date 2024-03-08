@@ -1,71 +1,215 @@
 @extends('master.master')
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="au-card recent-report">
-            @include('layouts.errorAndSuccessMessage')
-            <div class="au-card-inner">
-                <div class="overview-wrap">
-                    <h2 class="title-1">overview</h2>
-                    <button class="au-btn au-btn-icon au-btn--blue">
-                        <i class="zmdi zmdi-plus"></i>add item</button>
-                </div>
-                <div class="row m-t-25">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="overview-item overview-item--c1">
-                            <div class="overview__inner">
-                                <div class="overview-box clearfix">
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-account-o"></i>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="au-card recent-report">
+                @include('layouts.errorAndSuccessMessage')
+                <div class="au-card-inner">
+                    <div class="overview-wrap">
+                        <h2 class="title-1">overview</h2>
+                        {{-- <button class="au-btn au-btn-icon au-btn--blue">
+                        <i class="zmdi zmdi-plus"></i>add item</button> --}}
+                    </div>
+                    <div class="row m-t-25">
+                        <div class="col-sm-12 col-lg-12">
+                            <div class="overview-item overview-item--c1">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $total_users }}</h2>
+                                            <span>Total Users</span>
+                                        </div>
                                     </div>
-                                    <div class="text">
-                                        <h2>10368</h2>
-                                        <span>members online</span>
+                                    <div class="overview-chart">
+                                        <canvas id="widget"></canvas>
                                     </div>
                                 </div>
-                                {{-- <div class="overview-chart">
-                                    <canvas id="widgetChart1"></canvas>
-                                </div> --}}
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="overview-item overview-item--c2">
-                            <div class="overview__inner">
-                                <div class="overview-box clearfix">
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-shopping-cart"></i>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c1">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $active_players }}</h2>
+                                            <span>Active Players</span>
+                                        </div>
                                     </div>
-                                    <div class="text">
-                                        <h2>388,688</h2>
-                                        <span>items solid</span>
-                                    </div>
+                                    {{-- <div class="overview-chart">
+                                    <canvas id="widget"></canvas>
+                                </div> --}}
                                 </div>
-                                {{-- <div class="overview-chart">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c1">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $inactive_players }}</h2>
+                                            <span>Inactive Players</span>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="overview-chart">
+                                    <canvas id="widget"></canvas>
+                                </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c2">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $active_partners }}</h2>
+                                            <span>Active Partners</span>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="overview-chart">
                                     <canvas id="widgetChart2"></canvas>
                                 </div> --}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="overview-item overview-item--c3">
-                            <div class="overview__inner">
-                                <div class="overview-box clearfix">
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-calendar-note"></i>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c2">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $inactive_partners }}</h2>
+                                            <span>Inactive Partners</span>
+                                        </div>
                                     </div>
-                                    <div class="text">
-                                        <h2>1,086</h2>
-                                        <span>this week</span>
-                                    </div>
+                                    {{-- <div class="overview-chart">
+                                    <canvas id="widgetChart2"></canvas>
+                                </div> --}}
                                 </div>
-                                {{-- <div class="overview-chart">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c3">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $active_managers }}</h2>
+                                            <span>Active Managers</span>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="overview-chart">
                                     <canvas id="widgetChart3"></canvas>
                                 </div> --}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c3">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $inactive_managers }}</h2>
+                                            <span>Inactive Managers</span>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="overview-chart">
+                                    <canvas id="widgetChart3"></canvas>
+                                </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c4">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $active_football_staff }}</h2>
+                                            <span>Active staff</span>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="overview-chart">
+                                    <canvas id="widgetChart3"></canvas>
+                                </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c4">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $inactive_football_staff }}</h2>
+                                            <span>Inactive staff</span>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="overview-chart">
+                                    <canvas id="widgetChart3"></canvas>
+                                </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c2">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $jobs }}</h2>
+                                            <span>Active Football Jobs Member</span>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="overview-chart">
+                                    <canvas id="widgetChart2"></canvas>
+                                </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c2">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-accounts"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $inactive_jobs }}</h2>
+                                            <span>Inactive Football Jobs Members</span>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="overview-chart">
+                                    <canvas id="widgetChart2"></canvas>
+                                </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="col-sm-6 col-lg-3">
                         <div class="overview-item overview-item--c4">
                             <div class="overview__inner">
                                 <div class="overview-box clearfix">
@@ -77,17 +221,14 @@
                                         <span>total earnings</span>
                                     </div>
                                 </div>
-                                {{-- <div class="overview-chart">
-                                    <canvas id="widgetChart4"></canvas>
-                                </div> --}}
                             </div>
                         </div>
+                    </div> --}}
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    {{-- <div class="col-lg-6">
+        {{-- <div class="col-lg-6">
         <div class="au-card chart-percent-card">
             <div class="au-card-inner">
                 <h3 class="title-2 tm-b-5">char by %</h3>
@@ -113,8 +254,8 @@
             </div>
         </div>
     </div> --}}
-</div>
-{{-- <div class="row">
+    </div>
+    {{-- <div class="row">
     <div class="col-lg-9">
         <h2 class="title-1 m-b-25">Earnings By Items</h2>
         <div class="table-responsive table--no-card m-b-40">
@@ -501,5 +642,75 @@
         </div>
     </div>
 </div> --}}
-
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            var chartData = @json($chart_data);
+            //WidgetChart 1
+            var ctx = document.getElementById("widget");
+            if (ctx) {
+                ctx.height = 130;
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: chartData.labels,
+                        type: 'line',
+                        datasets: [{
+                            data: chartData.data,
+                            label: 'Dataset',
+                            backgroundColor: 'rgba(255,255,255,.1)',
+                            borderColor: 'rgba(255,255,255,.55)',
+                        }, ]
+                    },
+                    options: {
+                        maintainAspectRatio: true,
+                        legend: {
+                            display: false
+                        },
+                        layout: {
+                            padding: {
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                bottom: 0
+                            }
+                        },
+                        responsive: true,
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    color: 'transparent',
+                                    zeroLineColor: 'transparent'
+                                },
+                                ticks: {
+                                    fontSize: 2,
+                                    fontColor: 'transparent'
+                                }
+                            }],
+                            yAxes: [{
+                                display: false,
+                                ticks: {
+                                    display: false,
+                                }
+                            }]
+                        },
+                        title: {
+                            display: false,
+                        },
+                        elements: {
+                            line: {
+                                borderWidth: 0
+                            },
+                            point: {
+                                radius: 0,
+                                hitRadius: 10,
+                                hoverRadius: 4
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

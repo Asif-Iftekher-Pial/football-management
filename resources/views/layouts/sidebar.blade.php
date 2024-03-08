@@ -1,9 +1,9 @@
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
         <a href="{{ route('dashboard') }}">
-            <img src="{{ asset('logo/logo_two.jpg') }}" class="test" style="max-width: 81%;
+            <img src="{{ asset('logo/header.png') }}" class="test" style="    max-width: 115%;
             height: auto;
-            margin-left: 12px;
+            margin-left: -12px;
             margin-bottom: 5px;" alt="Cool Admin" />
         </a>
     </div>

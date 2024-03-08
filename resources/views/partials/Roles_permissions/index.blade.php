@@ -14,10 +14,14 @@
 
                     <div class="col-md-12">
                         @include('layouts.errorAndSuccessMessage')
-                        <a href="{{ route('roles-permissions.create') }}" class="btn btn-sm btn-success">
-                            <i class="zmdi zmdi-plus"></i> add Players</a>
-                            <a href="{{ route('roles-permissions.create') }}" class="btn btn-sm btn-primary">
-                                <i class="zmdi zmdi-plus"></i>add Football Group Staff</a>
+                        <a href="{{ route('player.create') }}" class="btn btn-sm btn-success">
+                            <i class="zmdi zmdi-plus"></i>Players</a>
+                            <a href="{{ route('football-group-staff.create') }}" class="btn btn-sm btn-primary">
+                                <i class="zmdi zmdi-plus"></i>Football Group Staff</a>
+                                <a href="{{ route('manager.create') }}" class="btn btn-sm btn-warning">
+                                    <i class="zmdi zmdi-plus"></i>Manager</a>
+                                    <a href="{{ route('group-partner.create') }}" class="btn btn-sm btn-warning">
+                                        <i class="zmdi zmdi-plus"></i>Group Partner</a>
                         <!-- DATA TABLE-->
                         <div class="table-responsive m-b-40 mt-3">
                             <table class="table table-borderless table-data3" id="myTable">
