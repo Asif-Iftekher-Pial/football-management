@@ -66,4 +66,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(OtherFootballJobs::class,'user_id','id');
     }
+
+    public function football_club()
+    {
+        return $this->hasOne(FootballClub::class,'user_id','id');
+    }
 }

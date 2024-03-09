@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\FootballClub;
 use App\Models\FootballGroupStaff;
 use App\Models\GroupPartner;
 use App\Models\Manager;
@@ -33,6 +34,7 @@ class ApprovalMiddleware
         $status_of_player = Player::where('user_id', $user->id)->first();
         $status_of_manager = Manager::where('user_id', $user->id)->first();
         $status_of_football_job = OtherFootballJobs::where('user_id', $user->id)->first();
+        $status_of_football_club = FootballClub::where('user_id', $user->id)->first();
 
         if ($status_of_football_group !== null) {
             if ($status_of_football_group->status == 'approved') {
@@ -57,6 +59,11 @@ class ApprovalMiddleware
         }
          elseif ($status_of_football_job !== null) {
             if ($status_of_football_job->status == 'approved') {
+                return $next($request);
+            }
+            return redirect()->route('blockMessage');
+        }elseif ($status_of_football_club !== null) {
+            if ($status_of_football_club->status == 'approved') {
                 return $next($request);
             }
             return redirect()->route('blockMessage');

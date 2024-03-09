@@ -1,16 +1,72 @@
-@extends('master.master')
-@section('content')
-<div class="col-lg-12">
-    <div class="card">
-        <div class="card-header">
-            <strong>Player Informations</strong>
-        </div>
-        <div class="card-body card-block">
-            <form action="{{ route('player.store') }}" method="post" enctype="multipart/form-data">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Login</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="{{ asset('admin_essentials/css/font-face.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin_essentials/vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin_essentials/vendor/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin_essentials/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{{ asset('admin_essentials/vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{{ asset('admin_essentials/vendor/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin_essentials/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin_essentials/vendor/wow/animate.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin_essentials/vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin_essentials/vendor/slick/slick.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin_essentials/vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin_essentials/vendor/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{{ asset('admin_essentials/css/theme.css') }}" rel="stylesheet" media="all">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-content">
+            <div class="login-logo">
+                <a href="#">
+                    <img src="{{ asset('logo/pdf_header.png') }}" alt="CoolAdmin">
+                </a>
+            </div>
+            <div class="login-form">
+                @if (session()->has('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert"
+                    id="alert">
+                    {{ session()->get('message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+            @endif
+            {{-- error message --}}
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <h4 class="text-center">Player Registration</h4>
+            <form action="{{ route('player.login.submit') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                @include('layouts.errorAndSuccessMessage')
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="name" class="form-control-label">Name</label>
                             <input type="text" name="name" placeholder="Enter name" class="form-control">
@@ -35,6 +91,12 @@
                             <label for="dob" class="form-control-label">Date of Birth</label>
                             <input type="date" name="dob" placeholder="Enter date of birth" class="form-control">
                         </div>
+                        <div class="form-group">
+                            <label for="video" class="form-control-label">Video</label>
+                            <input type="text" id="file-input" name="video" placeholder="https://" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="height" class="form-control-label">Height</label>
                             <input type="number" name="height" placeholder="Enter height" class="form-control">
@@ -78,10 +140,13 @@
                               <option value="special">Special </option>
                             </select>
                         </div>
+                        
+                    </div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="allergies" class="form-control-label">Allergies</label>
                             <select class="form-control" name="allergies" id="allergies">
-                              <option value="">--Select---</option>
+                              <option value="">---Select---</option>
                               <option value="yes">Yes</option>
                               <option value="no">No</option>
                              
@@ -101,12 +166,10 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="is_passport_more_then_one" class="form-control-label">Multiple Passports</label>
                             <select class="form-control" name="is_passport_more_then_one" id="is_passport_more_then_one">
-                              <option value="">--Select---</option>
+                              <option value="">---Select---</option>
                               <option value="yes">Yes</option>
                               <option value="no">No</option>
                             </select>
@@ -127,6 +190,8 @@
                             <label for="contract_length" class="form-control-label">Contract Length</label>
                             <input type="text" name="contract_length" placeholder="Enter contract length" class="form-control">
                         </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="football_group_player" class="form-control-label">Football Group Player</label>
                             <input type="text" name="football_group_player" placeholder="Enter football group player" class="form-control">
@@ -168,21 +233,49 @@
                             <label for="photo" class="form-control-label">Photo</label>
                             <input type="file" id="file-input" name="photo" required class="form-control">
                         </div>
-                        <div class="form-group">
-                            <label for="video" class="form-control-label">Video</label>
-                            <input type="text" id="file-input" name="video" placeholder="https://" class="form-control">
-                        </div>
-
+                       
                     </div>
                 </div>
-                
-                    <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="fa fa-dot-circle-o"></i> Submit
-                    </button>
+                <div class="col-md-12">
+                        <button type="submit" class="btn btn-block btn-primary text-center">Register</button>
+                        <a href="{{ route('login') }}" class="btn btn-block btn-success">Login</a>
+                </div>
                 
             </form>
-           
+            </div>
         </div>
     </div>
-</div>
-@endsection
+
+    <!-- Jquery JS-->
+    <script src="{{ asset('admin_essentials/vendor/jquery-3.2.1.min.js') }}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{{ asset('admin_essentials/vendor/bootstrap-4.1/popper.min.js') }}"></script>
+    <script src="{{ asset('admin_essentials/vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
+    <!-- Vendor JS       -->
+    <script src="{{ asset('admin_essentials/vendor/slick/slick.min.js') }}">
+    </script>
+    <script src="{{ asset('admin_essentials/vendor/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('admin_essentials/vendor/animsition/animsition.min.js') }}"></script>
+    <script src="{{ asset('admin_essentials/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
+    </script>
+    <script src="{{ asset('admin_essentials/vendor/counter-up/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('admin_essentials/vendor/counter-up/jquery.counterup.min.js') }}">
+    </script>
+    <script src="{{ asset('admin_essentials/vendor/circle-progress/circle-progress.min.js') }}"></script>
+    <script src="{{ asset('admin_essentials/vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('admin_essentials/vendor/chartjs/Chart.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin_essentials/vendor/select2/select2.min.js') }}">
+    </script>
+
+    <!-- Main JS-->
+    <script src="{{ asset('admin_essentials/js/main.js') }}"></script>
+    <script>
+        setTimeout(function() {
+            $('#alert').slideUp();
+        }, 4000);
+    </script>
+
+</body>
+
+</html>
+<!-- end document-->

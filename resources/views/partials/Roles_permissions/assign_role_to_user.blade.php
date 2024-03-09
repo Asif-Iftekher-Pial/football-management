@@ -11,7 +11,13 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-4">Please be carefull about assigning new role to user.Your system might behave unexpectedly!</h5>
+                            <h5 class="text-center m-4">
+                                Please be carefull about assigning new role to user.Your system might behave unexpectedly!
+                            
+                            </h5>
+                            <h5 class="text-center m-4">
+                                You can not assign role registered_football_club to any user. This is a default role for users who registered as registered_football_club
+                            </h5>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
@@ -32,7 +38,8 @@
                                             <label for="checkbox{{ $role->id }}" class="form-check-label ">
                                                 <input type="checkbox" id="checkbox{{ $role->id }}" name="roles[]"
                                                     value="{{ $role->name }}" class="form-check-input"
-                                                    {{ $user->roles->contains('id', $role->id) ? 'checked' : '' }}>{{ $role->name }}
+                                                    {{ $user->roles->contains('id', $role->id) ? 'checked' : '' }}
+                                                    {{ $role->name == 'registered_football_club' ? 'disabled' : '' }}>{{ $role->name }}
                                             </label>
                                         </div>
                                     </div>

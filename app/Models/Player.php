@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\FootballClub;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Player extends Model
 {
@@ -39,5 +40,9 @@ class Player extends Model
     public function medical_info()
     {
         return $this->hasOne(MedicalInfo::class,'player_id','id');
+    }
+    public function clubs()
+    {
+        return $this->belongsToMany(FootballClub::class, 'club_player')->withTimestamps();
     }
 }

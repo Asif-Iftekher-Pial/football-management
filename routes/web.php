@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AdminApproveCOntroller;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FootballClubController;
 use App\Http\Controllers\FootballGroupPartnerController;
 use App\Http\Controllers\FootballGroupStaffController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\OtherFootballJobsController;
+use App\Http\Controllers\PickUserController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\RolePermissionController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +24,20 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/admin/login', [AuthController::class, 'index'])->name('login');
+Route::get('/job-registration/login', [AuthController::class, 'job_registration'])->name('job.login');
+Route::post('/job-registration/login-submit', [AuthController::class, 'job_registration_submit'])->name('job.login.submit');
+Route::get('/manager-registration/login', [AuthController::class, 'manager_registration'])->name('manager.login');
+Route::post('/manager-registration/login-submit', [AuthController::class, 'manager_registration_submit'])->name('manager.login.submit');
+Route::get('/partner-registration/login', [AuthController::class, 'partner_registration'])->name('partner.login');
+Route::post('/partner-registration/login', [AuthController::class, 'partner_registration_submit'])->name('partner.login.submit');
+Route::get('/player-registration/login', [AuthController::class, 'player_registration'])->name('player.login');
+Route::post('/player-registration/login-submit', [AuthController::class, 'player_registration_submit'])->name('player.login.submit');
+Route::get('/staff-registration/login', [AuthController::class, 'staff_registration'])->name('staff.login');
+Route::post('/staff-registration/login-submit', [AuthController::class, 'staff_registration_submit'])->name('staff.login.submit');
+
+Route::get('/club-registration/login', [AuthController::class, 'club_registration'])->name('club.login');
+Route::post('/club-registration/login-submit', [AuthController::class, 'club_registration_submit'])->name('club.login.submit');
+
 Route::post('submit-login', [AuthController::class, 'store'])->name('submit.login');
 
 Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
@@ -67,7 +83,23 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
         Route::get('other-football-job-approve/{id}/{status}', [OtherFootballJobsController::class, 'adminApproveStatusOfOtherFootballJob'])->name('football_job.approve.status');
         Route::get('other-football-job-pdf/{id}', [OtherFootballJobsController::class, 'exportToPdf'])->name('football_job.export.pdf');
 
+        //Football Club
+        Route::resource('football-club', FootballClubController::class);
+        Route::get('football-club-approve/{id}/{status}', [FootballClubController::class, 'adminApproveStatusOfFootballClub'])->name('football_club.approve.status');
+        Route::get('football-club-pdf/{id}', [FootballClubController::class, 'exportToPdf'])->name('football_club.export.pdf');
 
+        //Pick Player By Club
+        Route::get('players-list',[PickUserController::class,'playerList'])->name('player.list');
+        Route::get('player-detail/{id}',[PickUserController::class,'show'])->name('player.detail');
+        Route::get('player-detail-pdf/{id}', [PickUserController::class, 'exportToPdf'])->name('player.detail.export.pdf');
+
+        //Pick Manager by Club
+        Route::get('manager-list',[PickUserController::class,'managerList'])->name('manager.list');
+        Route::get('manager-detail/{id}',[PickUserController::class,'manager_show'])->name('manager.detail');
+        Route::get('manager-detail-pdf/{id}', [PickUserController::class, 'manager_exportToPdf'])->name('manager.detail.export.pdf');
+
+        //select player by club
+        Route::get('select-player/{id}',[PickUserController::class,'player_pick'])->name('player.pick');
     });
 
    

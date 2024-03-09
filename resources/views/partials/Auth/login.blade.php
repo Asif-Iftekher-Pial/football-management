@@ -83,7 +83,7 @@
                                         <a href="#">Forgotten Password?</a>
                                     </label> --}}
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+                                <button class="au-btn au-btn--block au-btn--green" type="submit">sign in</button>
                                 {{-- <div class="social-login-content">
                                     <div class="social-button">
                                         <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
@@ -91,12 +91,21 @@
                                     </div>
                                 </div> --}}
                             </form>
-                            {{-- <div class="register-link">
-                                <p>
-                                    Don't you have account?
-                                    <a href="#">Sign Up Here</a>
-                                </p>
-                            </div> --}}
+                            <div class="row mt-0">
+                                <div class="col-md-12 mt-0">
+                                    <p class="text-center">Registration</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Manager<a class="ml-1" href="{{ route('manager.login') }}">Click Here</a></p>
+                                    <p>Player<a class="ml-1" href="{{ route('player.login') }}">Click Here</a></p>
+                                    <p>Football Club<a class="ml-1" href="{{ route('club.login') }}">Click Here</a></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Football Partner<a class="ml-1" href="{{ route('partner.login') }}">Click Here</a></p>
+                                    <p>Football Staff<a class="ml-1" href="{{ route('staff.login') }}">Click Here</a></p>
+                                    <p>Football Job<a class="ml-1" href="{{ route('job.login') }}">Click Here</a></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

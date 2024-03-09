@@ -73,6 +73,30 @@
                 @else
                     
                 @endif
+                
+                @if ( auth()->user()->hasRole('other_football_job') || auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner')|| auth()->user()->hasRole('registered_football_club'))
+                <li>
+                    <a href="{{ route('football-club.index') }}"><i class="fas fa-user"></i>Football Club</a>
+                </li>
+                @else
+                    
+                @endif
+
+                @if (auth()->user()->hasexactroles('registered_football_club') )
+                <li>
+                    <a href="{{ route('player.list') }}"><i class="fas fa-user"></i>Pick Players</a>
+                </li>
+                @else
+                    
+                @endif
+
+                @if (auth()->user()->hasexactroles('registered_football_club') )
+                <li>
+                    <a href="{{ route('manager.list') }}"><i class="fas fa-user"></i>Pick Manager</a>
+                </li>
+                @else
+                    
+                @endif
                
                
                
