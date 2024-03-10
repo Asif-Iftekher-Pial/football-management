@@ -10,6 +10,7 @@ use App\Http\Controllers\OtherFootballJobsController;
 use App\Http\Controllers\PickUserController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\StripePaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -113,6 +114,12 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
         Route::get('all-clubs-of-manager/{id}',[PickUserController::class,'selectedManagerByClubs'])->name('view.selected.manager.by.clubs');
         Route::get('remove-club-from-manager/{manager_id}/{club_id}',[PickUserController::class,'removeCLubFromManager'])->name('remove.selected.club.form.manager');
 
+
+
+        //STripe payment
+        Route::get('stripe',[StripePaymentController::class,'stripe'])->name('stripe');
+        Route::get('stripe-checkout',[StripePaymentController::class,'stripeCheckout'])->name('stripe.checkout');
+        Route::get('stripe-checkout/success',[StripePaymentController::class,'stripeCheckoutSuccess'])->name('stripe.checkout.success');
     });
 
    
