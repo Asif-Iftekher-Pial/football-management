@@ -6,7 +6,7 @@
                 <div class="au-card-inner">
                     @include('layouts.errorAndSuccessMessage')
                     <div class="overview-wrap">
-                    <h2 class="title-1">Managers</h2>
+                    <h2 class="title-1">Players</h2>
                     </div>
                    <div class="row m-t-30">
                         <div class="col-md-12">
@@ -25,56 +25,48 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($managers as $manager)
+                                        @foreach ($players as $player)
                                             <tr>
                                                 <td>
-                                                    @if ($manager->user->photo)
-                                                        <img src="{{ asset('images/' . $manager->user->photo) }}"
+                                                    @if ($player->user->photo)
+                                                        <img src="{{ asset('images/' . $player->user->photo) }}"
                                                             alt="Photo" width="100px">
                                                     @else
                                                         No Photo
                                                     @endif
                                                 </td>
-                                                <td>{{ $manager->name }}</td>
+                                                <td>{{ $player->name }}</td>
                                                 <td>
-                                                    @if (Auth::user()->football_club->payment == 'paid')
-                                                    {{ $manager->user->email }}
-                                                @else
-                                                    <p>For paid user only</p>
-                                                @endif
+                                                   {{ $player->user->email }}
+                                               
                                                    
                                                 </td>
                                                 <td>
-                                                    @if (Auth::user()->football_club->payment == 'paid')
-                                                    {{ $manager->phone }}
-                                                @else
-                                                    <p>For paid user only</p>
-                                                @endif
+                                                   {{ $player->phone }}
+                                               
                                                 </td>
                                                 <td>
-                                                    @if (Auth::user()->football_club->payment == 'paid')
-                                                    {{ $manager->address }}
-                                                @else
-                                                    <p>For paid user only</p>
-                                                @endif
+                                                    {{ $player->address }}
+                                               
                                                 </td>
                                                 
-                                                <td>{{ $manager->nationality }}</td>
-                                               
-                                                {{-- <td class="process">{{ $staff->payment_status }}</td> --}}
+                                                <td>{{ $player->nationality }}</td>
                                                 <td class="row justify-content-between">
                                                     {{-- edit button --}}
-                                                    <a href="{{ route('manager.detail', $manager->id) }}"
-                                                        class="btn btn-success btn-sm"><i class="fa fa-eye"
-                                                            aria-hidden="true"></i></a>
-                                                     @if (Auth::user()->football_club->payment == 'paid')
-                                                    <a href="{{ route('manager.pick', $manager->id) }}"
-                                                        class="btn btn-primary btn-sm m-2">
-                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                    <a href="{{ route('player.show', $player->id) }}"
+                                                        class="btn btn-success btn-sm">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
                                                     </a>
-                                                    @else
-                                                        pay to select manager
-                                                    @endif
+                                                  
+
+
+                                                    <a href="{{ route('view.selected.clubs', $player->id) }}"
+                                                        class="btn btn-primary btn-sm m-2">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                        view Clubs
+                                                    </a>
+                                                    
+                                                    
                                                    
                                                 </td>
                                             </tr>

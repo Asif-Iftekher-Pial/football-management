@@ -37,44 +37,36 @@
                                                 </td>
                                                 <td>{{ $manager->name }}</td>
                                                 <td>
-                                                    @if (Auth::user()->football_club->payment == 'paid')
-                                                    {{ $manager->user->email }}
-                                                @else
-                                                    <p>For paid user only</p>
-                                                @endif
+                                                   {{ $manager->user->email }}
+                                               
                                                    
                                                 </td>
                                                 <td>
-                                                    @if (Auth::user()->football_club->payment == 'paid')
-                                                    {{ $manager->phone }}
-                                                @else
-                                                    <p>For paid user only</p>
-                                                @endif
+                                                   {{ $manager->phone }}
+                                               
                                                 </td>
                                                 <td>
-                                                    @if (Auth::user()->football_club->payment == 'paid')
                                                     {{ $manager->address }}
-                                                @else
-                                                    <p>For paid user only</p>
-                                                @endif
+                                               
                                                 </td>
                                                 
                                                 <td>{{ $manager->nationality }}</td>
-                                               
-                                                {{-- <td class="process">{{ $staff->payment_status }}</td> --}}
                                                 <td class="row justify-content-between">
                                                     {{-- edit button --}}
-                                                    <a href="{{ route('manager.detail', $manager->id) }}"
-                                                        class="btn btn-success btn-sm"><i class="fa fa-eye"
-                                                            aria-hidden="true"></i></a>
-                                                     @if (Auth::user()->football_club->payment == 'paid')
-                                                    <a href="{{ route('manager.pick', $manager->id) }}"
-                                                        class="btn btn-primary btn-sm m-2">
-                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                    <a href="{{ route('manager.show', $manager->id) }}"
+                                                        class="btn btn-success btn-sm">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
                                                     </a>
-                                                    @else
-                                                        pay to select manager
-                                                    @endif
+                                                  
+
+
+                                                    <a href="{{ route('view.selected.manager.by.clubs', $manager->id) }}"
+                                                        class="btn btn-primary btn-sm m-2">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                        view Clubs
+                                                    </a>
+                                                    
+                                                    
                                                    
                                                 </td>
                                             </tr>

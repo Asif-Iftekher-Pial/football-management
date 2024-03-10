@@ -100,6 +100,19 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
 
         //select player by club
         Route::get('select-player/{id}',[PickUserController::class,'player_pick'])->name('player.pick');
+        //manager pick
+        Route::get('select-manager/{id}',[PickUserController::class,'manager_pick'])->name('manager.pick');
+        
+        
+        // Retrive all players with all clubs
+        Route::get('all-players-for-see-clubs',[PickUserController::class,'selectedPlayerListByClubs'])->name('all.players.with.clubs');
+        Route::get('all-clubs-of-player/{id}',[PickUserController::class,'selectedPlayerByClubs'])->name('view.selected.clubs');
+        Route::get('remove-club-from-player/{player_id}/{club_id}',[PickUserController::class,'removeCLubFromPlayer'])->name('remove.selected.club');
+
+        Route::get('all-manager-for-see-clubs',[PickUserController::class,'selectedManagerListByClubs'])->name('all.managers.with.clubs');
+        Route::get('all-clubs-of-manager/{id}',[PickUserController::class,'selectedManagerByClubs'])->name('view.selected.manager.by.clubs');
+        Route::get('remove-club-from-manager/{manager_id}/{club_id}',[PickUserController::class,'removeCLubFromManager'])->name('remove.selected.club.form.manager');
+
     });
 
    

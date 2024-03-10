@@ -29,5 +29,10 @@ class Manager extends Model
       public function user()
       {
           return $this->belongsTo(User::class,'user_id','id');
-      }     
+      } 
+      
+      public function clubs()
+    {
+        return $this->belongsToMany(FootballClub::class, 'club_manager')->withTimestamps();
+    }
 }

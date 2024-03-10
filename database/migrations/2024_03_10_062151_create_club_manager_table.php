@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('club_player', function (Blueprint $table) {
+        Schema::create('club_manager', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('player_id')->constrained();
+            $table->foreignId('manager_id')->constrained();
             $table->foreignId('football_club_id')->constrained();
             $table->foreignId('user_id')->constrained();
             
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('club_player');
+        Schema::dropIfExists('club_manager');
     }
 };

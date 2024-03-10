@@ -29,4 +29,9 @@ class FootballClub extends Model
     {
         return $this->belongsToMany(Player::class, 'club_player')->withTimestamps();
     }
+
+    public function managers()
+    {
+        return $this->belongsToMany(Manager::class, 'club_manager')->withTimestamps();
+    }
 }

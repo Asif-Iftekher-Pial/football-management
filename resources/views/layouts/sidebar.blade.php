@@ -97,6 +97,18 @@
                 @else
                     
                 @endif
+
+                 
+                <li style="display:{{ haveAllRoles_super_admin() ? '' : 'none' }}">
+                    <a href="{{ route('all.players.with.clubs') }}"><i class="fas fa-user"></i>Selected Players By Clubs</a>
+                </li>
+                
+                <li style="display:{{ haveAllRoles_super_admin() ? '' : 'none' }}">
+                    <a href="{{ route('all.managers.with.clubs') }}"><i class="fas fa-user"></i>Selected Managers By Clubs</a>
+                </li>
+                
+
+
                
                
                
