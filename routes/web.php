@@ -87,6 +87,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
         //Football Club
         Route::resource('football-club', FootballClubController::class);
         Route::get('football-club-approve/{id}/{status}', [FootballClubController::class, 'adminApproveStatusOfFootballClub'])->name('football_club.approve.status');
+        Route::get('football-club-payment-approve/{id}/{status}', [FootballClubController::class, 'adminApprovePaymentStatusOfFootballClub'])->name('football_club.payment.status');
         Route::get('football-club-pdf/{id}', [FootballClubController::class, 'exportToPdf'])->name('football_club.export.pdf');
 
         //Pick Player By Club

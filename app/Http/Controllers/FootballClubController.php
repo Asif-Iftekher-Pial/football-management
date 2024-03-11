@@ -186,6 +186,20 @@ class FootballClubController extends Controller
         return redirect()->route('football-club.index')->with('message', 'Status updated successfully');
     }
 
+
+     public function adminApprovePaymentStatusOfFootballClub($id, $newStatus)
+    {
+        $status = FootballClub::with('user')->findOrFail($id);
+        //update status
+        $status->payment = $newStatus;
+        $status->save();
+        // Dispatch the job to send the email
+        return redirect()->route('football-club.index')->with('message', 'Payment Status updated successfully');
+    }
+
+
+
+
     /**
      * Remove the specified resource from storage.
      *

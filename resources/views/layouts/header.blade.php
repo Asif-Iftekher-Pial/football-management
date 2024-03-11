@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="header-wrap">
                 <form class="form-header" action="" method="POST">
-                    @hasexactroles('registered_football_club')
+                    {{-- @hasexactroles('registered_football_club')
                     @if (Auth::user()->football_club->payment == 'not_paid')
                     <a class="btn btn-sm btn-success" href="{{ route('stripe.page') }}">Start Subscription</a>
                         
                     @endif
-                     @endhasexactroles
+                     @endhasexactroles --}}
                     {{-- <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
                     <button class="au-btn--submit" type="submit">
                         <i class="zmdi zmdi-search"></i>
