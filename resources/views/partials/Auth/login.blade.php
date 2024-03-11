@@ -37,7 +37,7 @@
 
 <body class="animsition">
     <div class="page-wrapper">
-        <div class="page-content--bge5">
+        {{-- <div class="page-content--bge5"> --}}
             <div class="container">
                 <div class="login-wrap">
                     <div class="login-content">
@@ -93,7 +93,9 @@
                             </form>
                             <div class="row mt-0">
                                 <div class="col-md-12 mt-0">
-                                    <p class="text-center">Registration</p>
+                                    <p class="m-1">Forgot Password? Contact <a href="mailto:{{ App\Models\User::where('id',1)->pluck('email')->first() }}">{{ App\Models\User::where('id',1)->pluck('email')->first() }}</a></p>
+
+                                    <h5 class="text-center">Registration</h5>
                                 </div>
                                 <div class="col-md-6">
                                     <p>Manager<a class="ml-1" href="{{ route('manager.login') }}">Click Here</a></p>
@@ -110,7 +112,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        {{-- </div> --}}
 
     </div>
 

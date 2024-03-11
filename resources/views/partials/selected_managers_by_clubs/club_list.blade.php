@@ -6,7 +6,7 @@
                 <div class="au-card-inner">
                     @include('layouts.errorAndSuccessMessage')
                     <div class="overview-wrap">
-                    <h2 class="title-1">Player - {{ $all_clubs_of_manager->name }}</h2>
+                    <h2 class="title-1">Mannager - {{ $all_clubs_of_manager->name }}</h2>
                     </div>
                    <div class="row m-t-30">
                         <div class="col-md-12">

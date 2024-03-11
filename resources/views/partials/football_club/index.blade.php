@@ -76,6 +76,11 @@
 
                                                 </td>
                                                 <td>
+                                                    @if ($football_club->payment == 'not_paid' )
+                                                    <a href="{{ route('sendPaypalPaymentLink',$football_club->user->id) }}" class="btn btn-sm btn-outline-primary"><i class="fa fa-envelope m-1" aria-hidden="true"></i>Payment Link</a>
+                                                    @else
+                                                        
+                                                    @endif
                                                    <p class="text-{{ $football_club->payment == 'paid' ? 'success' : 'danger' }}"> {{ $football_club->payment }}</p>
                                                 </td>
                                                 @endhasallroles

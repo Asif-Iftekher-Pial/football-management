@@ -5,7 +5,7 @@
                 <form class="form-header" action="" method="POST">
                     @hasexactroles('registered_football_club')
                     @if (Auth::user()->football_club->payment == 'not_paid')
-                    <a class="btn btn-sm btn-success" href="{{ route('stripe.checkout',['price' => 50,'product' => 'Silver']) }}">Make Payment</a>
+                    <a class="btn btn-sm btn-success" href="{{ route('stripe.page') }}">Start Subscription</a>
                         
                     @endif
                      @endhasexactroles

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendPaymentLinkJob;
 use App\Models\User;
 use App\Models\FootballClub;
 use Illuminate\Http\Request;
@@ -229,6 +230,17 @@ class FootballClubController extends Controller
             return $pdf->download('clubr_profile.pdf');
 
         }
+    }
+
+
+    public function sendPaypalPaymentLink($id)
+    {
+        $user = User::where('id',$id)->first();
+        $user_email = $user->email;
+        $user_name = $user->name;
+        
+        SendPaymentLinkJob::dispatch($user_email,$user_name);
+        return redirect()->back()->with('message','Payment request has been sent to this user');
     }
 
 }

@@ -22,14 +22,14 @@
            
         @endif
         <div class="row">
-            <h5></h5>
+             <h4 class="card-title">Thank you for you payment.Enjoy our services</h4>
             <br>
             
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="card text-start">
                     {{-- <img class="card-img-top" src="holder.js/100px180/" alt="Title" /> --}}
                     <div class="card-body">
-                        <h4 class="card-title">Thank you for you payment.Enjoy our services</h4>
+                       
                         {{-- <h5>Price 10$</h5> --}}
                          {{-- <a class="btn btn-sm btn-success" href="{{ route('stripe.checkout',['price' => 10,'product' => 'Silver']) }}">Make Payment</a> --}}
                          <a href="{{ route('dashboard') }}" class="btn btn-sm btn-success">Home page</a>

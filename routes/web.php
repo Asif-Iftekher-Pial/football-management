@@ -116,10 +116,20 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
 
 
 
-        //STripe payment
-        Route::get('stripe',[StripePaymentController::class,'stripe'])->name('stripe');
-        Route::get('stripe-checkout',[StripePaymentController::class,'stripeCheckout'])->name('stripe.checkout');
-        Route::get('stripe-checkout/success',[StripePaymentController::class,'stripeCheckoutSuccess'])->name('stripe.checkout.success');
+        // //STripe payment
+        // Route::get('stripe',[StripePaymentController::class,'stripe'])->name('stripe');
+        // Route::get('stripe-checkout',[StripePaymentController::class,'stripeCheckout'])->name('stripe.checkout');
+        // Route::get('stripe-checkout/success',[StripePaymentController::class,'stripeCheckoutSuccess'])->name('stripe.checkout.success');
+
+
+
+        //Stripe Payment
+        Route::get('stripe',[StripePaymentController::class,'getStripe'])->name('stripe.page');
+        Route::post('stripe',[StripePaymentController::class,'postStripe'])->name('stripe.submit');
+        Route::get('stripe/success',[StripePaymentController::class,'successTransaction'])->name('stripe.success');
+        Route::get('stripe/cancel',[StripePaymentController::class,'cancelTransaction'])->name('stripe.cancel');
+
+        Route::get('send-paypal-payment-link/{id}',[FootballClubController::class,'sendPaypalPaymentLink'])->name('sendPaypalPaymentLink');
     });
 
    

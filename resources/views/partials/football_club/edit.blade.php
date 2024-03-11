@@ -13,6 +13,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
+                            {{-- {{ $club }} --}}
                             <div class="form-group">
                                 <label for="name" class="form-control-label">Name</label>
                                 <input type="text" name="name" placeholder="Enter name" class="form-control" value="{{ $club->name }}">
@@ -30,7 +31,7 @@
                            
                             <div class="form-group">
                                 <label for="photo" class="form-control-label">Photo</label>
-                                <input type="file" name="photo" class="form-control">
+                                <input type="file" name="photo" class="form-control" >
                             </div>
                         </div>
                         <div class="col-md-6">
