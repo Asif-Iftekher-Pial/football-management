@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use PDF;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\StaffStatusUpdated;
 use App\Models\OtherFootballJobs;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendStaffStatusUpdatedEmail;
 
 class OtherFootballJobsController extends Controller
@@ -200,7 +202,8 @@ class OtherFootballJobsController extends Controller
         $status->status = $newStatus;
         $status->save();
         // Dispatch the job to send the email
-        SendStaffStatusUpdatedEmail::dispatch($status);
+        // SendStaffStatusUpdatedEmail::dispatch($status);
+        Mail::to($status->user->email)->send(new StaffStatusUpdated($status->status));
         return redirect()->route('other-football-job.index')->with('message', 'Status updated successfully');
     }
 

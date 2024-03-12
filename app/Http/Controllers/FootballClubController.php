@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SendPaymentLinkJob;
+use PDF;
 use App\Models\User;
 use App\Models\FootballClub;
 use Illuminate\Http\Request;
+use App\Mail\SendPaymentLink;
+use App\Jobs\SendPaymentLinkJob;
+use App\Mail\StaffStatusUpdated;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendStaffStatusUpdatedEmail;
-use PDF;
+
 class FootballClubController extends Controller
 {
     /**
@@ -182,7 +186,8 @@ class FootballClubController extends Controller
         $status->status = $newStatus;
         $status->save();
         // Dispatch the job to send the email
-        SendStaffStatusUpdatedEmail::dispatch($status);
+        // SendStaffStatusUpdatedEmail::dispatch($status); // in live if supervisor is installed then use this for queue work
+        Mail::to($status->user->email)->send(new StaffStatusUpdated($status->status));
         return redirect()->route('football-club.index')->with('message', 'Status updated successfully');
     }
 
@@ -253,7 +258,8 @@ class FootballClubController extends Controller
         $user_email = $user->email;
         $user_name = $user->name;
         
-        SendPaymentLinkJob::dispatch($user_email,$user_name);
+        // SendPaymentLinkJob::dispatch($user_email,$user_name);
+        Mail::to($user_email)->send(new SendPaymentLink($user_name));
         return redirect()->back()->with('message','Payment request has been sent to this user');
     }
 

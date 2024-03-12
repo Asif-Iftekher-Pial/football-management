@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\User;
 use App\Models\GroupPartner;
 use Illuminate\Http\Request;
+use App\Mail\StaffStatusUpdated;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendStaffStatusUpdatedEmail;
-use PDF;
+
 class FootballGroupPartnerController extends Controller
 {
     /**
@@ -181,7 +184,8 @@ class FootballGroupPartnerController extends Controller
         $status->status = $newStatus;
         $status->save();
         // Dispatch the job to send the email
-        SendStaffStatusUpdatedEmail::dispatch($status);
+        // SendStaffStatusUpdatedEmail::dispatch($status);
+        Mail::to($status->user->email)->send(new StaffStatusUpdated($status->status));
         return redirect()->route('group-partner.index')->with('message', 'Football Group partner status updated successfully');
     }
 

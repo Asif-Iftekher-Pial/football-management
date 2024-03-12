@@ -6,9 +6,11 @@ use PDF;
 use App\Models\User;
 use App\Models\Player;
 use Illuminate\Http\Request;
+use App\Mail\StaffStatusUpdated;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendStaffStatusUpdatedEmail;
 
 class PlayerController extends Controller
@@ -265,7 +267,8 @@ class PlayerController extends Controller
         $status->status = $newStatus;
         $status->save();
         // Dispatch the job to send the email
-        SendStaffStatusUpdatedEmail::dispatch($status);
+        // SendStaffStatusUpdatedEmail::dispatch($status);
+        Mail::to($status->user->email)->send(new StaffStatusUpdated($status->status));
         return redirect()->route('player.index')->with('message', 'Status updated successfully');
     }
 

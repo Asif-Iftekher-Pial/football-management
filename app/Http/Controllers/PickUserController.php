@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\AdminAlertJob;
-use App\Jobs\AdminAlertJobForManager;
 use PDF;
 use App\Models\User;
 use App\Models\Player;
 use App\Models\Manager;
+use App\Mail\AdminNotify;
+use App\Jobs\AdminAlertJob;
 use App\Models\FootballClub;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Jobs\AdminAlertJobForManager;
+use App\Mail\AdminAlertForManagerMail;
 
 class PickUserController extends Controller
 {
@@ -91,8 +94,8 @@ class PickUserController extends Controller
         
 
         //send mail
-        AdminAlertJob::dispatch($club,$admin,$player);
-
+        // AdminAlertJob::dispatch($club,$admin,$player);
+        Mail::to($admin->email)->send(new AdminNotify($club,$player));
         return redirect()->back()->with('message', 'Player selected for your club successfully.Wait for admin nagotiation with player');
     }
 
@@ -121,7 +124,9 @@ class PickUserController extends Controller
         $admin = User::where('id',1)->first();
 
         //send mail
-        AdminAlertJobForManager::dispatch($manager,$club,$admin);
+        // AdminAlertJobForManager::dispatch($manager,$club,$admin);
+
+        Mail::to($admin->email)->send(new AdminAlertForManagerMail($club,$manager));
 
         return redirect()->back()->with('message', 'Manager selected for your club successfully.Wait for admin negotiation with manager');
     }

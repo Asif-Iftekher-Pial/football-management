@@ -1,10 +1,12 @@
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
         <a href="{{ route('dashboard') }}">
-            <img src="{{ asset('logo/header.png') }}" class="test" style="    max-width: 115%;
+            <img src="{{ asset('logo/header.png') }}" class="test"
+                style="max-width: 115%;
             height: auto;
             margin-left: -12px;
-            margin-bottom: 5px;" alt="Cool Admin" />
+            margin-bottom: 5px;"
+                alt="Cool Admin" />
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
@@ -13,108 +15,99 @@
                 <li class="active has-sub">
                     <a class="js-arrow" href="{{ route('dashboard') }}">
                         <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                    {{-- <ul class="list-unstyled navbar__sub-list js-sub-list">
-                        <li>
-                            <a href="index.html">Dashboard 1</a>
-                        </li>
-                        <li>
-                            <a href="index2.html">Dashboard 2</a>
-                        </li>
-                        <li>
-                            <a href="index3.html">Dashboard 3</a>
-                        </li>
-                        <li>
-                            <a href="index4.html">Dashboard 4</a>
-                        </li>
-                    </ul> --}}
+
                 </li>
                 <li style="display:{{ haveAllRoles_super_admin() ? '' : 'none' }}">
                     <a href="{{ route('roles-permissions.index') }}">
                         <i class="far fa-check-square"></i>Users & Roles</a>
                 </li>
-                
-                @if(auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner'))
-                <li>
-                    <a href="{{ route('football-group-staff.index') }}">
-                        <i class="fas fa-chart-bar"></i>Football Group Staff</a>
-                </li>
 
+                @if (auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner'))
+                    <li>
+                        <a href="{{ route('football-group-staff.index') }}">
+                            <i class="fas fa-chart-bar"></i>Football Group Staff</a>
+                    </li>
                 @else
                 @endif
 
-                @if(auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner'))
-                <li>
-                    <a href="{{ route('group-partner.index') }}">
-                        <i class="fas fa-chart-bar"></i>Football Group Partner</a>
-                </li>
-
+                @if (auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner'))
+                    <li>
+                        <a href="{{ route('group-partner.index') }}">
+                            <i class="fas fa-chart-bar"></i>Football Group Partner</a>
+                    </li>
                 @else
                 @endif
 
-                @if (auth()->user()->hasRole('player') || auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner') )
+                @if (auth()->user()->hasRole('player') ||
+                        auth()->user()->hasRole('football_group_staff') ||
+                        auth()->user()->hasRole('partner'))
                     <li>
                         <a href="{{ route('player.index') }}"><i class="fa fa-users"></i>Players</a>
                     </li>
                 @else
-                    
                 @endif
-                @if ( auth()->user()->hasRole('manager') || auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner'))
-                <li>
-                    <a href="{{ route('manager.index') }}"><i class="fas fa-user"></i>Manager</a>
-                </li>
+                @if (auth()->user()->hasRole('manager') ||
+                        auth()->user()->hasRole('football_group_staff') ||
+                        auth()->user()->hasRole('partner'))
+                    <li>
+                        <a href="{{ route('manager.index') }}"><i class="fas fa-user"></i>Manager</a>
+                    </li>
                 @else
-                    
                 @endif
 
-                @if ( auth()->user()->hasRole('other_football_job') || auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner'))
-                <li>
-                    <a href="{{ route('other-football-job.index') }}"><i class="fas fa-user"></i>Other Football Job</a>
-                </li>
+                @if (auth()->user()->hasRole('other_football_job') ||
+                        auth()->user()->hasRole('football_group_staff') ||
+                        auth()->user()->hasRole('partner'))
+                    <li>
+                        <a href="{{ route('other-football-job.index') }}"><i class="fas fa-user"></i>Other Football
+                            Job</a>
+                    </li>
                 @else
-                    
-                @endif
-                
-                @if ( auth()->user()->hasRole('other_football_job') || auth()->user()->hasRole('football_group_staff') || auth()->user()->hasRole('partner')|| auth()->user()->hasRole('registered_football_club'))
-                <li>
-                    <a href="{{ route('football-club.index') }}"><i class="fas fa-user"></i>Football Club</a>
-                </li>
-                @else
-                    
                 @endif
 
-                @if (auth()->user()->hasexactroles('registered_football_club') )
-                <li>
-                    <a href="{{ route('player.list') }}"><i class="fas fa-user"></i>Pick Players</a>
-                </li>
+                @if (auth()->user()->hasRole('other_football_job') ||
+                        auth()->user()->hasRole('football_group_staff') ||
+                        auth()->user()->hasRole('partner') ||
+                        auth()->user()->hasRole('registered_football_club'))
+                    <li>
+                        <a href="{{ route('football-club.index') }}"><i class="fas fa-user"></i>Football Club</a>
+                    </li>
                 @else
-                    
                 @endif
 
-                @if (auth()->user()->hasexactroles('registered_football_club') )
-                <li>
-                    <a href="{{ route('manager.list') }}"><i class="fas fa-user"></i>Pick Manager</a>
-                </li>
+                @if (auth()->user()->hasexactroles('registered_football_club'))
+                    <li>
+                        <a href="{{ route('player.list') }}"><i class="fas fa-user"></i>Pick Players</a>
+                    </li>
                 @else
-                    
                 @endif
 
-                 
+                @if (auth()->user()->hasexactroles('registered_football_club'))
+                    <li>
+                        <a href="{{ route('manager.list') }}"><i class="fas fa-user"></i>Pick Manager</a>
+                    </li>
+                @else
+                @endif
+
+
                 <li style="display:{{ haveAllRoles_super_admin() ? '' : 'none' }}">
-                    <a href="{{ route('all.players.with.clubs') }}"><i class="fas fa-user"></i>Selected Players By Clubs</a>
+                    <a href="{{ route('all.players.with.clubs') }}"><i class="fas fa-user"></i>Selected Players By
+                        Clubs</a>
                 </li>
-                
+
                 <li style="display:{{ haveAllRoles_super_admin() ? '' : 'none' }}">
-                    <a href="{{ route('all.managers.with.clubs') }}"><i class="fas fa-user"></i>Selected Managers By Clubs</a>
+                    <a href="{{ route('all.managers.with.clubs') }}"><i class="fas fa-user"></i>Selected Managers By
+                        Clubs</a>
                 </li>
-                
 
 
-               
-               
-               
-               
-               
-                
+
+
+
+
+
+
+
                 {{-- <li>
                     <a href="calendar.html">
                         <i class="fas fa-calendar-alt"></i>Calendar</a>
