@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label for="address" class=" form-control-label">Address</label>
-                            <textarea name="address" id="" cols="10" rows="2" value={{ $football_group_staff->address }} class="form-control"></textarea>
+                            <input name="address" value={{ $football_group_staff->address }} class="form-control"></input>
                         </div>
                         <div class="form-group">
                             <label for="website" class=" form-control-label">Website</label>
