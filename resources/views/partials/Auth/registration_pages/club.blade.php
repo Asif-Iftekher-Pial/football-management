@@ -67,7 +67,14 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <p>Club name should be match with email,Otherwise account will remain blocked!</p>
+                                {{-- <p>Club name should be match with email,Otherwise account will remain blocked!</p> --}}
+                                <div
+                                    class="alert alert-warning"
+                                    role="alert"
+                                >
+                                    <strong>Warning!</strong> Club name should be match with email,Otherwise account will remain blocked!
+                                </div>
+                                
                                 <div class="form-group">
                                     <label for="name" class=" form-control-label">Club Name</label>
                                     <input type="text" name="name" placeholder="Enter your club name" class="form-control">
