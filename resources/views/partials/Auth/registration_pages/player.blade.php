@@ -81,7 +81,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone" class="form-control-label">Phone</label>
-                            <input type="number" name="phone" placeholder="Enter phpne number" class="form-control">
+                            <input type="number" name="phone" placeholder="Enter phone number" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="address" class="form-control-label">Address</label>
@@ -99,11 +99,11 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="height" class="form-control-label">Height</label>
-                            <input type="number" name="height" placeholder="Enter height" class="form-control">
+                            <input type="number" name="height" min="0" placeholder="Enter height" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="weight" class="form-control-label">Weight</label>
-                            <input type="number" name="weight" placeholder="Enter weight" class="form-control">
+                            <input type="number" name="weight" min="0" placeholder="Enter weight" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="foot" class="form-control-label">Favourite Foot</label>
@@ -115,7 +115,7 @@
                         <div class="form-group">
                             <label for="position" class="form-control-label">Position</label>
                             <select class="form-control" name="position" id="position">
-                              <option value="">--Select Position--</option>
+                              <option value="">---Select Position---</option>
                               <option value="goalkeeper">Goalkeeper</option>
                               <option value="central_defender">Central Defender</option>
                               <option value="defender_right">Defender Right</option>
@@ -133,7 +133,7 @@
                         <div class="form-group">
                             <label for="passport_type" class="form-control-label">Passport Type</label>
                             <select class="form-control" name="passport_type" id="passport_type">
-                              <option value="">--Select Types--</option>
+                              <option value="">---Select Types--</option>
                               <option value="ordinary">Ordinary </option>
                               <option value="official">Official</option>
                               <option value="diplomatic">Diplomatic</option>
@@ -143,6 +143,35 @@
                         
                     </div>
                     <div class="col-md-3">
+                        {{-- <div class="form-group">
+                            <label for="is_passport_more_then_one" class="form-control-label"></label>
+                            <select class="form-control" name="is_passport_more_then_one" id="is_passport_more_then_one">
+                              <option value="">---Select---</option>
+                              <option value="yes">Yes</option>
+                              <option value="no">No</option>
+                            </select>
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="current_club" class="form-control-label">Current Club</label>
+                            <input type="text" name="current_club" placeholder="Enter current club" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="international_appearance" class="form-control-label">International Appearance</label>
+                            <select class="form-control" name="international_appearance" id="international_appearance">
+                                <option value="">---Select---</option>
+                                <option value="full_cup">Full Cap</option>
+                                <option value="under_21">Under 21's</option>
+                            </select>
+                        </div>
+                        {{-- <div class="form-group">
+                            <label for="contract_length" class="form-control-label">Contract Length</label>
+                            <input type="text" name="contract_length" placeholder="Enter contract length" class="form-control">
+                        </div> --}}
+                        
+                        <div class="form-group">
+                            <label for="photo" class="form-control-label">Photo</label>
+                            <input type="file" id="file-input" name="photo" required class="form-control">
+                        </div>
                        
                         <div class="form-group">
                             <label class="form-check-label" for="allergies">Do You Have Allergie ? </label>
@@ -157,18 +186,7 @@
                            
                         </div>
 
-                        <div class="form-group">
-                            <label for="gender" class="form-control-label">Gender</label>
-                            {{-- radio --}}
-                            <div class="form-check-inline form-check">
-                                <label for="inline-radio1" class="form-check-label mr-3 ">
-                                    <input type="radio" id="inline-radio1" name="gender"  value="male" class="form-check-input">Male
-                                </label>
-                                <label for="inline-radio2" class="form-check-label ">
-                                    <input type="radio" id="inline-radio2" name="gender" value="female" class="form-check-input">Female
-                                </label>
-                            </div>
-                        </div>
+                        
 
 
                         <div class="form-group">
@@ -182,36 +200,29 @@
                         <div class="form-group" style="display:none;" id="show_hide_multi_passport">
                             <textarea cols="10" rows="3" id="multi_passport_input" name="is_passport_more_then_one" placeholder="Enter List of Passport" class="form-control"></textarea>
                         </div>
-
-
-
-                        {{-- <div class="form-group">
-                            <label for="is_passport_more_then_one" class="form-control-label"></label>
-                            <select class="form-control" name="is_passport_more_then_one" id="is_passport_more_then_one">
-                              <option value="">---Select---</option>
-                              <option value="yes">Yes</option>
-                              <option value="no">No</option>
-                            </select>
-                        </div> --}}
-
-
-
-
                         <div class="form-group">
-                            <label for="current_club" class="form-control-label">Current Club</label>
-                            <input type="text" name="current_club" placeholder="Enter current club" class="form-control">
+                            <label for="contract_length" class="form-control-label">Contract Length ?</label>
+                            {{-- radio --}}
+                            <div class="form-check-inline form-check">
+                                <label for="contract_length1" class="form-check-label mr-3 ">
+                                    <input type="radio" id="contract_length1" name="contract_length"  value="Representa on Football Group Player" class="form-check-input">Representa on Football Group Player
+                                </label>
+                                <label for="contract_length2" class="form-check-label ">
+                                    <input type="radio" id="contract_length2" name="contract_length" value="Football Group Have Mandate for Player" class="form-check-input">Football Group Have Mandate for Player
+                                </label>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="international_appearance" class="form-control-label">International Appearance</label>
-                            <select class="form-control" name="international_appearance" id="international_appearance">
-                                <option value="">--Select---</option>
-                                <option value="full_cup">Full Cap</option>
-                                <option value="under_21">Under 21's</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="contract_length" class="form-control-label">Contract Length</label>
-                            <input type="text" name="contract_length" placeholder="Enter contract length" class="form-control">
+                            <label for="gender" class="form-control-label">Gender</label>
+                            {{-- radio --}}
+                            <div class="form-check-inline form-check">
+                                <label for="inline-radio1" class="form-check-label mr-3 ">
+                                    <input type="radio" id="inline-radio1" name="gender"  value="male" class="form-check-input">Male
+                                </label>
+                                <label for="inline-radio2" class="form-check-label ">
+                                    <input type="radio" id="inline-radio2" name="gender" value="female" class="form-check-input">Female
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -257,10 +268,7 @@
                             <label for="password" class="form-control-label">Password</label>
                             <input type="password" name="password"  class="form-control">
                         </div>
-                        <div class="form-group">
-                            <label for="photo" class="form-control-label">Photo</label>
-                            <input type="file" id="file-input" name="photo" required class="form-control">
-                        </div>
+                       
                        
                     </div>
                 </div>
