@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('position')->comment('goalkeeper or Defender');
             $table->string('nationality');
             $table->string('passport_type');
-            $table->string('is_passport_more_then_one');
+            $table->string('is_passport_more_then_one')->nullable();
             $table->string('current_club');
             $table->string('international_appearance');
             $table->string('contract_length')->nullable();

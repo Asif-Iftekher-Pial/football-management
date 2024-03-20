@@ -62,8 +62,8 @@ class PlayerController extends Controller
             'position' => 'required',
             'nationality' => 'required',
             'passport_type' => 'required',
-            'allergies' => 'required',
-            'is_passport_more_then_one' => 'required',
+            // 'allergies' => 'required',
+            // 'is_passport_more_then_one' => 'required',
             'current_club' => 'required',
             'international_appearance' => 'required',
             'contract_length' => 'required',
@@ -112,7 +112,10 @@ class PlayerController extends Controller
         $player->position = $request->position;
         $player->nationality = $request->nationality;
         $player->passport_type = $request->passport_type;
-        $player->is_passport_more_then_one = $request->is_passport_more_then_one;
+        // $player->is_passport_more_then_one = $request->is_passport_more_then_one;
+        //if request has is_passport_more_then_one
+        $player->is_passport_more_then_one = $request->has('is_passport_more_then_one') ? $request->is_passport_more_then_one : 'N/A';
+
         $player->current_club = $request->current_club;
         $player->international_appearance = $request->international_appearance;
         $player->contract_length = $request->contract_length;
@@ -126,7 +129,10 @@ class PlayerController extends Controller
         $medical_info = new \App\Models\MedicalInfo();
         $medical_info->player_id = $player->id;
         $medical_info->blood_type = $request->blood_type;
-        $medical_info->allergies = $request->allergies;
+         //if request has allergies
+         if ($request->has('allergies')) {
+            $medical_info->allergies = $request->allergies;
+        }
         $medical_info->previous_injuries = $request->previous_injuries;
         $medical_info->about_player = $request->about_player;
         $medical_info->save();
@@ -179,8 +185,8 @@ class PlayerController extends Controller
             'position' => 'required',
             'nationality' => 'required',
             'passport_type' => 'required',
-            'allergies' => 'required',
-            'is_passport_more_then_one' => 'required',
+            // 'allergies' => 'required',
+            // 'is_passport_more_then_one' => 'required',
             'current_club' => 'required',
             'international_appearance' => 'required',
             'contract_length' => 'required',
@@ -240,7 +246,10 @@ class PlayerController extends Controller
         $player->position = $request->position;
         $player->nationality = $request->nationality;
         $player->passport_type = $request->passport_type;
-        $player->is_passport_more_then_one = $request->is_passport_more_then_one;
+        // $player->is_passport_more_then_one = $request->is_passport_more_then_one;
+         //if request has is_passport_more_then_one
+         $player->is_passport_more_then_one = $request->has('is_passport_more_then_one') ? $request->is_passport_more_then_one : 'N/A';
+
         $player->current_club = $request->current_club;
         $player->international_appearance = $request->international_appearance;
         $player->contract_length = $request->contract_length;
@@ -253,7 +262,10 @@ class PlayerController extends Controller
         // Update medical info
         $medical_info = $player->medical_info;
         $medical_info->blood_type = $request->blood_type;
-        $medical_info->allergies = $request->allergies;
+        //if request has allergies
+        if ($request->has('allergies')) {
+            $medical_info->allergies = $request->allergies;
+        }
         $medical_info->previous_injuries = $request->previous_injuries;
         $medical_info->about_player = $request->about_player;
         $medical_info->save();

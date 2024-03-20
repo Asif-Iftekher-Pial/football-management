@@ -39,7 +39,7 @@
     <div class="page-wrapper">
         {{-- <div class="page-content--bge5"> --}}
             <div class="container">
-                <div class="login-wrap">
+                <div class="login-wrap" style="    max-width: 1000px ">
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
@@ -93,19 +93,39 @@
                             </form>
                             <div class="row mt-0">
                                 <div class="col-md-12 mt-0">
-                                    <p class="m-1">Forgot Password? Contact <a href="mailto:{{ App\Models\User::where('id',1)->pluck('email')->first() }}">{{ App\Models\User::where('id',1)->pluck('email')->first() }}</a></p>
+                                    <p class="m-1">Forgot Password? Contact- <a href="mailto:contact@transferme.football">contact@transferme.football</a></p>
 
-                                    <h5 class="text-center">Registration</h5>
+                                    <h5 class="text-center m-3">Types Of Registration</h5>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>Manager<a class="ml-1" href="{{ route('manager.login') }}">Click Here</a></p>
-                                    <p>Player<a class="ml-1" href="{{ route('player.login') }}">Click Here</a></p>
-                                    <p>Football Club<a class="ml-1" href="{{ route('club.login') }}">Click Here</a></p>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="card-title">Registration to TransferMe.Football if you are a professional Football player or a football Manager/Coach-Register below:</p>
+                                            <h5>Manager Registration-<a class="ml-1 card-text" href="{{ route('manager.login') }}">Click Here</a></h5>
+                                            <h5>Player Registration-<a class="ml-1 card-text" href="{{ route('player.login') }}">Click Here</a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="card-title">For all other football related job register below:</p>
+                                            <h5>Football Job Registration-<a class="ml-1" href="{{ route('job.login') }}">Click Here</a></h5>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>Football Partner<a class="ml-1" href="{{ route('partner.login') }}">Click Here</a></p>
-                                    <p>Football Staff<a class="ml-1" href="{{ route('staff.login') }}">Click Here</a></p>
-                                    <p>Football Job<a class="ml-1" href="{{ route('job.login') }}">Click Here</a></p>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="card-title">If you are a professional football club and wish to access our database for players,Managers and other football related personal,Please register below:</p>
+                                            <h5 >Professional Football Club- <a class="ml-1" href="{{ route('club.login') }}">Click Here</a></h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5>Football Partner Registration-<a class="ml-1" href="{{ route('partner.login') }}">Click Here</a></h5>
+                                            <h5>Football Staff Registration-<a class="ml-1" href="{{ route('staff.login') }}">Click Here</a></h5>
+                                        </div>
+                                    </div>  
                                 </div>
                             </div>
                         </div>

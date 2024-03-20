@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
         $user =User::factory()->create([
             'name' => 'Super Admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@transferme.football',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'photo' =>'admin.png'
         ]);

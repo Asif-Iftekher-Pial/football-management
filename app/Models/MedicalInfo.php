@@ -12,7 +12,7 @@ class MedicalInfo extends Model
     protected $fillable = [
         'player_id',
         'blood_type',
-        'allergies',
+        // 'allergies',
         'previous_injuries',
         'about_player',
     ];

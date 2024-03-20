@@ -39,7 +39,7 @@
                                   <option value="secretarial" {{ $football_job->position == 'secretarial' ? 'selected' : '' }}>Secretarial</option>
                                   <option value="public_relations" {{ $football_job->position == 'public_relations' ? 'selected' : '' }}>Public Relations</option>
                                   <option value="communication" {{ $football_job->position == 'communication' ? 'selected' : '' }}>Communication</option>
-                                  <option value="marking" {{ $football_job->position == 'marking' ? 'selected' : '' }}>Marking</option>
+                                  <option value="marketing" {{ $football_job->position == 'marketing' ? 'selected' : '' }}>Marketing</option>
                                   <option value="web_team" {{ $football_job->position == 'web_team' ? 'selected' : '' }}>Web Team</option>
                                   <option value="social_media" {{ $football_job->position == 'social_media' ? 'selected' : '' }}>Social Media</option>
                                   <option value="grounds_person" {{ $football_job->position == 'grounds_person' ? 'selected' : '' }}>Grounds Person</option>
@@ -48,11 +48,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="experience" class="form-control-label">Experience</label>
-                                <input type="text" name="experience" placeholder="Enter your experience" class="form-control" value="{{ $football_job->experience }}">
+                                <textarea cols="10" rows="3" name="experience" placeholder="Enter your experience" class="form-control">{{ $football_job->experience }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="about_you" class="form-control-label">About You</label>
-                                <input type="text" name="about_you" placeholder="Enter about you" class="form-control" value="{{ $football_job->about_you }}">
+                                <textarea cols="10" rows="3" name="about_you" placeholder="Enter about you" class="form-control">{{ $football_job->about_you }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="form-control-label">Password</label>

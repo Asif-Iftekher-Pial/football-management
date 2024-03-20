@@ -55,19 +55,19 @@
                         </div>
                         <div class="form-group">
                             <label for="coaching_badges" class="form-control-label">Coaching Badges</label>
-                            <input type="text" name="coaching_badges" placeholder="Enter coaching badges" class="form-control">
+                            <textarea cols="10" rows="3" name="coaching_badges" placeholder="Enter coaching badges" class="form-control"> </textarea>
                         </div>
                         <div class="form-group">
                             <label for="qualification" class="form-control-label">Qualification</label>
-                            <input type="text" name="qualification" placeholder="Enter qualification" class="form-control">
+                            <textarea cols="10" rows="3" name="qualification" placeholder="Enter qualification" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="honours" class="form-control-label">International Honours</label>
-                            <input type="text" name="honours" placeholder="Enter any international honours" class="form-control">
+                            <textarea cols="10" rows="3" name="honours" placeholder="Enter any international honours" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="international_team_managed" class="form-control-label">International Team Managed</label>
-                            <input type="text" name="international_team_managed" placeholder="Enter international team managed" class="form-control">
+                            <textarea cols="10" rows="3" name="international_team_managed" placeholder="Enter international team managed" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="video" class="form-control-label">Video</label>

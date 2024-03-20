@@ -116,11 +116,11 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="experience" class="form-control-label">Experience</label>
-                                            <input type="text" name="experience" placeholder="Enter your experience" class="form-control">
+                                            <textarea cols="10" rows="3"  name="experience" placeholder="Enter your experience" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="about_you" class="form-control-label">About You</label>
-                                            <input type="text" name="about_you" placeholder="Enter about you" class="form-control">
+                                            <textarea cols="10" rows="3"  name="about_you" placeholder="Enter about you" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="password" class="form-control-label">Password</label>

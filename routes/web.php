@@ -129,6 +129,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
         Route::post('stripe',[StripePaymentController::class,'postStripe'])->name('stripe.submit');
         Route::get('stripe/success',[StripePaymentController::class,'successTransaction'])->name('stripe.success');
         Route::get('stripe/cancel',[StripePaymentController::class,'cancelTransaction'])->name('stripe.cancel');
+        Route::get('paypal-payment',[StripePaymentController::class,'paypalPage'])->name('paypalPage');
 
         Route::get('send-paypal-payment-link/{id}',[FootballClubController::class,'sendPaypalPaymentLink'])->name('sendPaypalPaymentLink');
     });

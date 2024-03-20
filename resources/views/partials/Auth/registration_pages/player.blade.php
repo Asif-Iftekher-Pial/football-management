@@ -143,19 +143,22 @@
                         
                     </div>
                     <div class="col-md-3">
+                       
                         <div class="form-group">
-                            <label for="allergies" class="form-control-label">Allergies</label>
-                            <select class="form-control" name="allergies" id="allergies">
-                              <option value="">---Select---</option>
-                              <option value="yes">Yes</option>
-                              <option value="no">No</option>
-                             
-                            </select>
+                            <label class="form-check-label" for="allergies">Do You Have Allergie ? </label>
+                            <div class="form-check-inline form-check">
+                                <label for="yes" class="form-check-label mr-3 ">
+                                    <input type="checkbox" id="yes"  class="form-check-input">Yes
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display:none;" id="show_hide">
+                            <input type="text" id="allergies_input" name="allergies" placeholder="Enter Type of Allergies" class="form-control">
+                           
                         </div>
 
-                       <div class="form-group">
+                        <div class="form-group">
                             <label for="gender" class="form-control-label">Gender</label>
-                            <br>
                             {{-- radio --}}
                             <div class="form-check-inline form-check">
                                 <label for="inline-radio1" class="form-check-label mr-3 ">
@@ -166,14 +169,34 @@
                                 </label>
                             </div>
                         </div>
+
+
                         <div class="form-group">
-                            <label for="is_passport_more_then_one" class="form-control-label">Multiple Passports</label>
+                            <label class="form-check-label" for="allergies">Do You Have Multiple Passports ? </label>
+                            <div class="form-check-inline form-check">
+                                <label for="multi_passport" class="form-check-label mr-3 ">
+                                    <input type="checkbox" id="multi_passport"  class="form-check-input">Yes
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display:none;" id="show_hide_multi_passport">
+                            <textarea cols="10" rows="3" id="multi_passport_input" name="is_passport_more_then_one" placeholder="Enter List of Passport" class="form-control"></textarea>
+                        </div>
+
+
+
+                        {{-- <div class="form-group">
+                            <label for="is_passport_more_then_one" class="form-control-label"></label>
                             <select class="form-control" name="is_passport_more_then_one" id="is_passport_more_then_one">
                               <option value="">---Select---</option>
                               <option value="yes">Yes</option>
                               <option value="no">No</option>
                             </select>
-                        </div>
+                        </div> --}}
+
+
+
+
                         <div class="form-group">
                             <label for="current_club" class="form-control-label">Current Club</label>
                             <input type="text" name="current_club" placeholder="Enter current club" class="form-control">
@@ -194,13 +217,18 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="football_group_player" class="form-control-label">Football Group Player</label>
-                            <input type="text" name="football_group_player" placeholder="Enter football group player" class="form-control">
+                            {{-- <input type="text" name="football_group_player" placeholder="Enter football group player" class="form-control"> --}}
+                            <select class="form-control" name="football_group_player">
+                                <option value="">---Select---</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">
                             <label for="blood_type" class="form-control-label">Blood Type</label>
                             <select class="form-control" name="blood_type" id="blood_type">
-                              <option value="">--Select---</option>
+                              <option value="">---Select---</option>
                               <option value="a+">A+</option>
                               <option value="a-">A-</option>
                               <option value="b+">B+</option>
@@ -219,11 +247,11 @@
                         </div>
                         <div class="form-group">
                             <label for="about_player" class="form-control-label">About Player</label>
-                            <textarea name="about_player" cols="10" rows="1"  class="form-control"></textarea>
+                            <textarea name="about_player" cols="10" rows="3" placeholder="About Your self"  class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="other_info" class="form-control-label">Other Information</label>
-                            <textarea name="other_info" cols="10" rows="2" class="form-control"></textarea>
+                            <textarea name="other_info" cols="10" rows="3" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="password" class="form-control-label">Password</label>
@@ -273,6 +301,31 @@
         setTimeout(function() {
             $('#alert').slideUp();
         }, 4000);
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            //allergies
+            $("#yes").change(function(){
+                if($("#yes").is(":checked")){
+                    $("#show_hide").show();
+                } else {
+                    $("#allergies_input").val("");
+                    $("#show_hide").hide();
+                    
+                }
+            });
+
+            //multiple passport
+            $("#multi_passport").change(function(){
+                if($("#multi_passport").is(":checked")){
+                    $("#show_hide_multi_passport").show();
+                } else {
+                    $("#multi_passport_input").val("");
+                    $("#show_hide_multi_passport").hide();
+                }
+            });
+        });
     </script>
 
 </body>

@@ -31,11 +31,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="qualification" class="form-control-label">Qualification</label>
-                                <input type="text" name="qualification" placeholder="Enter qualification" class="form-control" value="{{ $manager->qualification }}">
+                                <textarea cols="10" rows="3" name="qualification" placeholder="Enter qualification" class="form-control">{{ $manager->qualification }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="honours" class="form-control-label">International Honours</label>
-                                <input type="text" name="honours" placeholder="Enter any international honours" class="form-control" value="{{ $manager->honours }}">
+                                <textarea cols="10" rows="3" type="text" name="honours" placeholder="Enter any international honours" class="form-control" >{{ $manager->honours }}</textarea>
                             </div>
                            
                             <div class="form-group">
@@ -58,11 +58,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="coaching_badges" class="form-control-label">Coaching Badges</label>
-                                <input type="text" name="coaching_badges" placeholder="Enter coaching badges" class="form-control" value="{{ $manager->coaching_badges }}">
+                                <textarea cols="10" rows="3"  name="coaching_badges" placeholder="Enter coaching badges" class="form-control">{{ $manager->coaching_badges }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="international_team_managed" class="form-control-label">International Team Managed</label>
-                                <input type="text" name="international_team_managed" placeholder="Enter international team managed" class="form-control" value="{{ $manager->international_team_managed }}">
+                                <textarea cols="10" rows="3" name="international_team_managed" placeholder="Enter international team managed" class="form-control">{{ $manager->international_team_managed }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="form-control-label">Password</label>

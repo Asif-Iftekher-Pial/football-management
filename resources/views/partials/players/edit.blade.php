@@ -77,12 +77,8 @@
                         </div>
                         <div class="form-group">
                             <label for="allergies" class="form-control-label">Allergies</label>
-                            <select class="form-control" name="allergies" id="allergies">
-                              <option value="">--Select---</option>
-                              <option value="yes" {{ $player->medical_info->allergies == 'yes' ? 'selected' : '' }}>Yes</option>
-                              <option value="no" {{ $player->medical_info->allergies == 'no' ? 'selected' : '' }}>No</option>
-                             
-                            </select>
+                            <input type="text" id="allergies_input" value="{{ $player->medical_info->allergies }}" name="allergies" placeholder="Enter Type of Allergies" class="form-control">
+                           
                         </div>
                         <div class="form-group">
                             <label for="gender" class="form-control-label">Gender</label>
@@ -100,14 +96,14 @@
                        
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="is_passport_more_then_one" class="form-control-label">Multiple Passports</label>
                             <select class="form-control" name="is_passport_more_then_one" id="is_passport_more_then_one">
                               <option value="">--Select---</option>
                               <option value="yes" {{ $player->is_passport_more_then_one == 'yes' ? 'selected' : '' }}>Yes</option>
                               <option value="no" {{ $player->is_passport_more_then_one == 'no' ? 'selected' : '' }}>No</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="current_club" class="form-control-label">Current Club</label>
                             <input type="text" name="current_club" value="{{ $player->current_club }}" placeholder="Enter current club" class="form-control">
@@ -149,10 +145,7 @@
                             <label for="previous_injuries" class="form-control-label">Previous Injuries</label>
                             <input type="text" name="previous_injuries" value="{{ $player->medical_info->previous_injuries }}" placeholder="Enter previous injuries" class="form-control">
                         </div>
-                        <div class="form-group">
-                            <label for="about_player" class="form-control-label">About Player</label>
-                            <input name="about_player" value="{{ $player->medical_info->about_player }}"  class="form-control">
-                        </div>
+                       
                         <div class="form-group">
                             <label for="other_info" class="form-control-label">Other Information</label>
                             <input name="other_info" value="{{ $player->other_info }}" class="form-control">
@@ -169,7 +162,16 @@
                             <label for="video" class="form-control-label">Video</label>
                             <input type="text" value="{{ $player->video }}" name="video" placeholder="https://" class="form-control">
                         </div>
-
+                        <div class="form-group">
+                            <label for="about_player" class="form-control-label">About Player</label>
+                            <textarea name="about_player" cols="10" rows="3"   placeholder="About Player Detail"  class="form-control">{{ $player->medical_info->about_player }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-check-label" for="allergies">Player Have Multiple Passports ? </label>
+                        </div>
+                        <div class="form-group"  id="show_hide_multi_passport">
+                            <textarea cols="10" rows="3"  id="multi_passport_input"  name="is_passport_more_then_one" placeholder="Enter List of Passport" class="form-control">{{ $player->is_passport_more_then_one }}</textarea>
+                        </div>
                     </div>
                 </div>
                 
@@ -182,4 +184,30 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $(document).ready(function(){
+        //allergies
+        $("#yes").change(function(){
+            if($("#yes").is(":checked")){
+                $("#show_hide").show();
+            } else {
+                $("#allergies_input").val("");
+                $("#show_hide").hide();
+                
+            }
+        });
+
+        //multiple passport
+        $("#multi_passport").change(function(){
+            if($("#multi_passport").is(":checked")){
+                $("#show_hide_multi_passport").show();
+            } else {
+                $("#multi_passport_input").val("");
+                $("#show_hide_multi_passport").hide();
+            }
+        });
+    });
+</script>
 @endsection

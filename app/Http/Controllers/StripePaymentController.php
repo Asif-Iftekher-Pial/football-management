@@ -99,4 +99,11 @@ class StripePaymentController extends Controller
         }
         return view('partials.payment.cancel_page');
     }
+
+
+
+    public function paypalPage()
+    {
+        return view('partials.payment.paypal_page');
+    }
 }

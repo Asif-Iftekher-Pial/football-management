@@ -41,7 +41,7 @@
                               <option value="secretarial">Secretarial</option>
                               <option value="public_relations" >Public Relations</option>
                               <option value="communication" >Communication</option>
-                              <option value="marking" >Marking</option>
+                              <option value="marketing" >Marketing</option>
                               <option value="web_team" >Web Team</option>
                               <option value="social_media">Social Media</option>
                               <option value="grounds_person" >Grounds Person</option>
@@ -50,11 +50,11 @@
                         </div>
                         <div class="form-group">
                             <label for="experience" class="form-control-label">Experience</label>
-                            <input type="text" name="experience" placeholder="Enter your experience" class="form-control">
+                            <textarea cols="10" rows="3" name="experience" placeholder="Enter your experience" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="about_you" class="form-control-label">About You</label>
-                            <input type="text" name="about_you" placeholder="Enter about you" class="form-control">
+                            <textarea cols="10" rows="3" name="about_you" placeholder="Enter about you" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="password" class="form-control-label">Password</label>

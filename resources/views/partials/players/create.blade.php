@@ -78,7 +78,7 @@
                               <option value="special">Special </option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="allergies" class="form-control-label">Allergies</label>
                             <select class="form-control" name="allergies" id="allergies">
                               <option value="">--Select---</option>
@@ -86,6 +86,19 @@
                               <option value="no">No</option>
                              
                             </select>
+                        </div> --}}
+                        <div class="form-group">
+                            <label class="form-check-label" for="allergies">Player Have Allergie ? </label>
+                            <br>
+                            <div class="form-check-inline form-check">
+                                <label for="yes" class="form-check-label mr-3 ">
+                                    <input type="checkbox" id="yes"  class="form-check-input">Yes
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display:none;" id="show_hide">
+                            <input type="text" id="allergies_input" name="allergies" placeholder="Enter Type of Allergies" class="form-control">
+                           
                         </div>
 
                        <div class="form-group">
@@ -103,14 +116,16 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="is_passport_more_then_one" class="form-control-label">Multiple Passports</label>
                             <select class="form-control" name="is_passport_more_then_one" id="is_passport_more_then_one">
                               <option value="">--Select---</option>
                               <option value="yes">Yes</option>
                               <option value="no">No</option>
                             </select>
-                        </div>
+                        </div> --}}
+                       
+
                         <div class="form-group">
                             <label for="current_club" class="form-control-label">Current Club</label>
                             <input type="text" name="current_club" placeholder="Enter current club" class="form-control">
@@ -172,7 +187,18 @@
                             <label for="video" class="form-control-label">Video</label>
                             <input type="text" id="file-input" name="video" placeholder="https://" class="form-control">
                         </div>
-
+                        <div class="form-group">
+                            <label class="form-check-label">Player Have Multiple Passports ? </label>
+                            <br>
+                            <div class="form-check-inline form-check">
+                                <label for="multi_passport" class="form-check-label mr-3 ">
+                                    <input type="checkbox" id="multi_passport"  class="form-check-input">Yes
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display:none;" id="show_hide_multi_passport">
+                            <textarea cols="10" rows="3" id="multi_passport_input" name="is_passport_more_then_one" placeholder="Enter List of Passport" class="form-control"></textarea>
+                        </div>
                     </div>
                 </div>
                 
@@ -185,4 +211,31 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function(){
+        //allergies
+        $("#yes").change(function(){
+            if($("#yes").is(":checked")){
+                $("#show_hide").show();
+            } else {
+                $("#allergies_input").val("");
+                $("#show_hide").hide();
+                
+            }
+        });
+
+        //multiple passport
+        $("#multi_passport").change(function(){
+            if($("#multi_passport").is(":checked")){
+                $("#show_hide_multi_passport").show();
+            } else {
+                $("#multi_passport_input").val("");
+                $("#show_hide_multi_passport").hide();
+            }
+        });
+    });
+</script>
 @endsection

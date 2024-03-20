@@ -13,6 +13,11 @@
                     <button class="au-btn--submit" type="submit">
                         <i class="zmdi zmdi-search"></i>
                     </button> --}}
+
+                    @hasexactroles('registered_football_club')
+                    <a href="{{ route('paypalPage') }}" class="btn btn-outline-warning">pay Now</a>
+                    @endhasexactroles
+
                 </form>
                 <div class="header-button">
                     {{-- <div class="noti-wrap">
