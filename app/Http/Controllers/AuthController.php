@@ -313,7 +313,7 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'address' => 'required',
+            // 'address' => 'required',
             'country' => 'required',
             // 'telephone' => 'required',
             'contact' => 'required',
@@ -346,6 +346,7 @@ class AuthController extends Controller
             'telephone' => $request->telephone,
             'contact' => $request->contact,
             'website' => $request->website,
+            'agent_number' => $request->agent_number,
         ]);
         return redirect()->route('login')->with('message', 'Football Group Partner registration successfull');
         
@@ -356,7 +357,7 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'address' => 'required',
+            // 'address' => 'required',
             'country' => 'required',
             // 'telephone' => 'required',
             'contact' => 'required',

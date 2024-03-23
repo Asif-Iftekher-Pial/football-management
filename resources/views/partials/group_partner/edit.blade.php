@@ -20,6 +20,11 @@
                             <label for="contact" class=" form-control-label">Contact</label>
                             <input type="number" name="contact" value="{{ $football_group_partner->contact }}" placeholder="Enter contact number" class="form-control">
                         </div>
+                         <div class="form-group">
+                            <label for="agent_number" class=" form-control-label">Agent Number</label>
+                            <input type="number" name="agent_number" value="{{ $football_group_partner->agent_number }}" placeholder="Enter agent number" class="form-control">
+                        </div>
+
                         <div class="form-group">
                             <label for="address" class=" form-control-label">Address</label>
                             <textarea name="address" id="" cols="10" rows="2" value={{ $football_group_partner->address }} class="form-control"></textarea>

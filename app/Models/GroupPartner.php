@@ -9,7 +9,7 @@ class GroupPartner extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id','name','address','country','telephone','contact','website','status','payment_status'
+        'user_id','name','address','country','telephone','contact','website','status','payment_status','agent_number'
     ];
     public function user()
     {

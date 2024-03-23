@@ -85,6 +85,7 @@ class FootballGroupPartnerController extends Controller
             'telephone' => $request->telephone,
             'contact' => $request->contact,
             'website' => $request->website,
+            'agent_number' => $request->agent_number,
         ]);
         return redirect()->route('group-partner.index')->with('message', 'Football Group Partner created successfully');
         
@@ -172,6 +173,7 @@ class FootballGroupPartnerController extends Controller
             'telephone' => $request->telephone,
             'contact' => $request->contact,
             'website' => $request->website,
+            'agent_number' => $request->agent_number,
         ]);
     
         return redirect()->route('group-partner.index')->with('message', 'Football Group partner updated successfully');

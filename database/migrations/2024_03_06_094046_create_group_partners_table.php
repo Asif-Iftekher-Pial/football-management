@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('name');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('country');
             $table->string('telephone')->nullable();
+            $table->string('agent_number')->nullable();
             $table->string('contact');
             $table->string('website')->nullable();
             $table->enum('status', ['approved', 'not_approved'])->default('not_approved');

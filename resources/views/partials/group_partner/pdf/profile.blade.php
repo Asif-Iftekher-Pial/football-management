@@ -79,6 +79,7 @@
             <p><strong>Country:</strong> {{ $football_group->country ?? '' }}</p>
             <p><strong>Telephone:</strong> {{ $football_group->telephone ?? '' }}</p>
             <p><strong>Contact:</strong> {{ $football_group->contact ?? '' }}</p>
+            <p><strong>Agent Number:</strong> {{ $football_group->agent_number ?? '' }}</p>
             <p><strong>Website:</strong> {{ $football_group->website ?? '' }}</p>
             <p><strong>Status:</strong> {{ $football_group->status ?? '' }}</p>
             <p><strong>Payment Status:</strong> {{ $football_group->payment_status ?? '' }}</p>

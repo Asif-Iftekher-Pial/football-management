@@ -79,14 +79,14 @@
                                     <label for="contact" class=" form-control-label">Contact</label>
                                     <input type="number" name="contact" placeholder="Enter contact number with country code" class="form-control">
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="address" class=" form-control-label">Address</label>
                                     <textarea name="address" id="" cols="10" rows="2" class="form-control"></textarea>
-                                </div>
-                                {{-- <div class="form-group">
-                                    <label for="website" class=" form-control-label">Website</label>
-                                    <input name="website"  placeholder="https://www.yourwebsite.com"  class="form-control">
                                 </div> --}}
+                                <div class="form-group">
+                                    <label for="agent_number" class="form-control-label">Agent Number (Not Mendatory)</label>
+                                    <input type="number" name="agent_number"  placeholder="Enter agent number"  class="form-control">
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 {{-- <div class="form-group">
