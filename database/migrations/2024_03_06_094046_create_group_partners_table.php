@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('country');
-            $table->string('telephone');
+            $table->string('telephone')->nullable();
             $table->string('contact');
-            $table->string('website');
+            $table->string('website')->nullable();
             $table->enum('status', ['approved', 'not_approved'])->default('not_approved');
             $table->enum('payment_status', ['paid', 'not_paid'])->default('not_paid');
 

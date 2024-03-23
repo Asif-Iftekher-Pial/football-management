@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('passport_type');
             $table->string('is_passport_more_then_one')->nullable();
             $table->string('current_club');
+            $table->string('player_represent');
             $table->string('international_appearance');
             $table->string('contract_length')->nullable();
             $table->string('football_group_player')->nullable();

@@ -140,7 +140,18 @@
                               <option value="special">Special </option>
                             </select>
                         </div>
-                        
+                        <div class="form-group">
+                            <label for="gender" class="form-control-label">Gender</label>
+                            {{-- radio --}}
+                            <div class="form-check-inline form-check">
+                                <label for="inline-radio1" class="form-check-label mr-3 ">
+                                    <input type="radio" id="inline-radio1" name="gender"  value="male" class="form-check-input">Male
+                                </label>
+                                <label for="inline-radio2" class="form-check-label ">
+                                    <input type="radio" id="inline-radio2" name="gender" value="female" class="form-check-input">Female
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         {{-- <div class="form-group">
@@ -202,28 +213,9 @@
                         </div>
                         <div class="form-group">
                             <label for="contract_length" class="form-control-label">Contract Length ?</label>
-                            {{-- radio --}}
-                            <div class="form-check-inline form-check">
-                                <label for="contract_length1" class="form-check-label mr-3 ">
-                                    <input type="radio" id="contract_length1" name="contract_length"  value="Representa on Football Group Player" class="form-check-input">Representa on Football Group Player
-                                </label>
-                                <label for="contract_length2" class="form-check-label ">
-                                    <input type="radio" id="contract_length2" name="contract_length" value="Football Group Have Mandate for Player" class="form-check-input">Football Group Have Mandate for Player
-                                </label>
-                            </div>
+                            <input type="text" name="contract_length" placeholder="Enter Contact Length" class="form-control">
                         </div>
-                        <div class="form-group">
-                            <label for="gender" class="form-control-label">Gender</label>
-                            {{-- radio --}}
-                            <div class="form-check-inline form-check">
-                                <label for="inline-radio1" class="form-check-label mr-3 ">
-                                    <input type="radio" id="inline-radio1" name="gender"  value="male" class="form-check-input">Male
-                                </label>
-                                <label for="inline-radio2" class="form-check-label ">
-                                    <input type="radio" id="inline-radio2" name="gender" value="female" class="form-check-input">Female
-                                </label>
-                            </div>
-                        </div>
+                       
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
@@ -272,7 +264,16 @@
                        
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="form-check">
+                    <label for="player_represent1" class="form-check-label mr-3 ">
+                        <input type="radio" id="player_represent1" name="player_represent"  value="Representa on Football Group Player" class="form-check-input">Representa on Football Group Player
+                    </label>
+                    <br>
+                    <label for="player_represent2" class="form-check-label ">
+                        <input type="radio" id="player_represent2" name="player_represent" value="Football Group Have Mandate for Player" class="form-check-input">Football Group Have Mandate for Player
+                    </label>
+                </div>
+                <div class="col-md-12 mt-3">
                         <button type="submit" class="btn btn-block btn-primary text-center">Register</button>
                         <a href="{{ route('login') }}" class="btn btn-block btn-success">Login</a>
                 </div>

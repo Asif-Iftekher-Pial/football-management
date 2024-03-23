@@ -241,7 +241,8 @@ class AuthController extends Controller
             'video' => 'required',
             'phone' =>'required',
             'address' => 'required',
-            'gender' => 'required'
+            'gender' => 'required',
+            'player_represent' => 'required'
         ]);
         // return $request->all();
         //handle photo
@@ -288,6 +289,7 @@ class AuthController extends Controller
         $player->other_info = $request->other_info;
         $player->video = $request->video;
         $player->gender = $request->gender;
+        $player->player_represent = $request->player_represent;
         $player->save();
 
         //medical info save
@@ -313,9 +315,9 @@ class AuthController extends Controller
             'password' => 'required',
             'address' => 'required',
             'country' => 'required',
-            'telephone' => 'required',
+            // 'telephone' => 'required',
             'contact' => 'required',
-            'website' => 'required',
+            // 'website' => 'required',
 
         ]);
 
@@ -356,9 +358,9 @@ class AuthController extends Controller
             'password' => 'required',
             'address' => 'required',
             'country' => 'required',
-            'telephone' => 'required',
+            // 'telephone' => 'required',
             'contact' => 'required',
-            'website' => 'required',
+            // 'website' => 'required',
 
         ]);
 

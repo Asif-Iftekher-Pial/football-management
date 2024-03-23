@@ -30,7 +30,8 @@ class Player extends Model
         'other_info',
         'phone',
         'address',
-        'payment_status'
+        'payment_status',
+        'player_represent'
     ];
 
     public function user()

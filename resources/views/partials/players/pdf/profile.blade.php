@@ -101,7 +101,7 @@
             <p><strong>International Appearances:</strong> {{ $player->player->international_appearance ?? '' }}</p>
             <p><strong>Contract Length:</strong> {{ $player->player->contract_length ?? '' }}</p>
             <p><strong>Football Group Player:</strong> {{ $player->player->football_group_player ?? '' }}</p>
-            <p><strong>Other Information:</strong> {{ $player->player->other_info ?? '' }}</p>
+            <p><strong>Other Information:</strong> {{ $player->player->other_info ?? '' }} <br> {{ $player->player->player_represent ?? '' }}</p>
         </div>
         {{-- <div class="profile-info">
             <h4>Medical Information</h4>

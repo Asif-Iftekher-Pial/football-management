@@ -72,7 +72,9 @@
                                     class="alert alert-warning"
                                     role="alert"
                                 >
-                                    <strong>Warning!</strong> Club name should be match with email,Otherwise account will remain blocked!
+                                    <strong>Warning!</strong> Club name should be match with official email,Otherwise account will not be opened!
+                                    <br>
+                                    If you have any question email us-through contact page.
                                 </div>
                                 
                                 <div class="form-group">

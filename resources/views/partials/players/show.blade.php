@@ -32,7 +32,8 @@
                 <div class="location text-sm-center">Date of Birth: {{ $player->dob }}</div>
                 <div class="location text-sm-center">Height: {{ $player->height }}</div>
                 <div class="location text-sm-center">Weight: {{ $player->weight }}</div>
-                <div class="location text-sm-center">Other Info: {{ $player->other_info }}</div>
+                <div class="location text-sm-center">Other Info: {{ $player->other_info }} <br> {{ $player->player_represent }}</div>
+
             </div>
             <hr>
             <div class="card-text text-sm-center">

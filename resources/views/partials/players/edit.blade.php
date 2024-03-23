@@ -93,7 +93,15 @@
                                 </label>
                             </div>
                         </div>
-                       
+                        <div class="form-check">
+                            <label for="player_represent1" class="form-check-label mr-3 ">
+                                <input type="radio" id="player_represent1" name="player_represent" {{ $player->player_represent == 'Representa on Football Group Player' ? 'checked' :'' }} value="Representa on Football Group Player" class="form-check-input">Representa on Football Group Player
+                            </label>
+                            <br>
+                            <label for="player_represent2" class="form-check-label ">
+                                <input type="radio" id="player_represent2" name="player_represent" {{ $player->player_represent == 'Football Group Have Mandate for Player' ? 'checked' :'' }} value="Football Group Have Mandate for Player" class="form-check-input">Football Group Have Mandate for Player
+                            </label>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         {{-- <div class="form-group">

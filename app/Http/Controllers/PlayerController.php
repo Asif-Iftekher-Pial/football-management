@@ -76,6 +76,7 @@ class PlayerController extends Controller
             'video' => 'required',
             'phone' =>'required',
             'address' => 'required',
+            'player_represent' => 'required',
             'gender' => 'required'
         ]);
 
@@ -123,6 +124,7 @@ class PlayerController extends Controller
         $player->other_info = $request->other_info;
         $player->video = $request->video;
         $player->gender = $request->gender;
+        $player->player_represent = $request->player_represent;
         $player->save();
 
         //medical info save
@@ -198,6 +200,7 @@ class PlayerController extends Controller
             'video' => 'required',
             'gender' => 'required',
             'phone' =>'required',
+            'player_represent' =>'required',
             'address' => 'required'
         ]);
 
@@ -257,6 +260,7 @@ class PlayerController extends Controller
         $player->other_info = $request->other_info;
         $player->video = $request->video;
         $player->gender = $request->gender;
+        $player->player_represent = $request->player_represent;
         $player->save();
 
         // Update medical info

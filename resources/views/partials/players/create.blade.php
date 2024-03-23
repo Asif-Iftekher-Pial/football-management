@@ -114,6 +114,15 @@
                                 </label>
                             </div>
                         </div>
+                        <div class="form-check">
+                            <label for="player_represent1" class="form-check-label mr-3 ">
+                                <input type="radio" id="player_represent1" name="player_represent"  value="Representa on Football Group Player" class="form-check-input">Representa on Football Group Player
+                            </label>
+                            <br>
+                            <label for="player_represent2" class="form-check-label ">
+                                <input type="radio" id="player_represent2" name="player_represent" value="Football Group Have Mandate for Player" class="form-check-input">Football Group Have Mandate for Player
+                            </label>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         {{-- <div class="form-group">
@@ -200,11 +209,12 @@
                             <textarea cols="10" rows="3" id="multi_passport_input" name="is_passport_more_then_one" placeholder="Enter List of Passport" class="form-control"></textarea>
                         </div>
                     </div>
+                    
                 </div>
                 
-                    <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="fa fa-dot-circle-o"></i> Submit
-                    </button>
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa fa-dot-circle-o"></i> Submit
+                </button>
                 
             </form>
            

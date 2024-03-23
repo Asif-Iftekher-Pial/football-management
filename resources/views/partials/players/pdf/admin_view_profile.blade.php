@@ -111,7 +111,7 @@
             <p><strong>International Appearances:</strong> {{ $player->international_appearance ?? '' }}</p>
             <p><strong>Contract Length:</strong> {{ $player->contract_length ?? '' }}</p>
             <p><strong>Football Group Player:</strong> {{ $player->football_group_player ?? '' }}</p>
-            <p><strong>Other Information:</strong> {{ $player->other_info ?? '' }}</p>
+            <p><strong>Other Information:</strong> {{ $player->other_info ?? '' }} <br> {{ $player->player_represent ?? '' }}</p>
         </div>
         <div>
             @if ( auth()->user()->hasAllRoles($collectionOfRoles))
